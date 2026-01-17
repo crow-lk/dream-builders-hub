@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
-import { Play, Clock, CheckCircle, Shield } from "lucide-react";
+import { motion } from "framer-motion";
+import { Play, Clock, CheckCircle, Shield, Volume2, VolumeX } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState, useRef } from "react";
+import heroImage from "@/assets/hero-construction.jpg";
 
 const highlights = [
   { icon: Clock, text: "20+ Years Experience" },
@@ -8,71 +11,205 @@ const highlights = [
   { icon: Shield, text: "Quality Materials" },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6 },
+  },
+};
+
 export function HeroSection() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handlePlayVideo = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-background to-secondary">
-      <div className="container mx-auto px-4 py-16 md:py-24">
+    <section className="relative overflow-hidden bg-gradient-to-br from-background via-secondary/50 to-background min-h-[90vh] flex items-center">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          animate={{ 
+            scale: [1, 1.2, 1],
+            rotate: [0, 5, 0],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -top-40 -right-40 w-96 h-96 bg-safety-yellow/10 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{ 
+            scale: [1.2, 1, 1.2],
+            rotate: [0, -5, 0],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -bottom-40 -left-40 w-80 h-80 bg-safety-orange/10 rounded-full blur-3xl"
+        />
+      </div>
+
+      <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
-          <div className="space-y-6 animate-fade-in">
-            <div className="inline-flex items-center gap-2 bg-accent/20 text-accent-foreground px-4 py-2 rounded-full text-sm font-medium">
-              <span className="w-2 h-2 bg-safety-yellow rounded-full"></span>
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="space-y-6"
+          >
+            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 bg-safety-yellow/20 text-foreground px-4 py-2 rounded-full text-sm font-medium border border-safety-yellow/30">
+              <span className="w-2 h-2 bg-safety-yellow rounded-full animate-pulse"></span>
               Sri Lanka's Trusted Construction Partner
-            </div>
+            </motion.div>
 
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+            <motion.h1 variants={itemVariants} className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               Build Your{" "}
-              <span className="text-safety-yellow">Dream Home</span>
+              <span className="text-safety-yellow relative">
+                Dream Home
+                <motion.span
+                  initial={{ width: 0 }}
+                  animate={{ width: "100%" }}
+                  transition={{ delay: 1, duration: 0.8 }}
+                  className="absolute bottom-2 left-0 h-3 bg-safety-yellow/30 -z-10"
+                />
+              </span>
               <br />
               in Sri Lanka
-            </h1>
+            </motion.h1>
 
-            <p className="text-lg text-muted-foreground max-w-lg">
+            <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-lg">
               Trusted construction partner for quality builds, renovations, and end-to-end project management. Transform your vision into reality with Sandali Construction.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-wrap gap-4">
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
               <Link to="/contact">
-                <Button size="lg" className="bg-safety-yellow text-foreground hover:bg-safety-yellow/90 font-semibold">
+                <Button size="lg" className="bg-safety-yellow text-foreground hover:bg-safety-yellow/90 font-semibold group">
                   Get a Free Consultation
+                  <motion.span
+                    className="ml-2"
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1, repeat: Infinity }}
+                  >
+                    →
+                  </motion.span>
                 </Button>
               </Link>
               <Link to="/#packages">
-                <Button size="lg" variant="outline">
+                <Button size="lg" variant="outline" className="group">
                   View Packages
                 </Button>
               </Link>
-            </div>
+            </motion.div>
 
             {/* Highlights */}
-            <div className="flex flex-wrap gap-6 pt-4">
-              {highlights.map((item) => (
-                <div key={item.text} className="flex items-center gap-2">
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-6 pt-4">
+              {highlights.map((item, index) => (
+                <motion.div
+                  key={item.text}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1 + index * 0.2 }}
+                  className="flex items-center gap-2"
+                >
                   <item.icon className="w-5 h-5 text-safety-yellow" />
                   <span className="text-sm font-medium">{item.text}</span>
-                </div>
+                </motion.div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          {/* Video Placeholder */}
-          <div className="relative animate-fade-in-up">
-            <div className="aspect-video bg-muted rounded-2xl overflow-hidden border border-border shadow-2xl">
-              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/5 to-primary/10">
-                <button className="w-20 h-20 bg-safety-yellow rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
-                  <Play className="w-8 h-8 text-foreground ml-1" />
-                </button>
-              </div>
-              {/* Placeholder image */}
-              <img
-                src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80"
-                alt="Construction site"
-                className="w-full h-full object-cover opacity-60"
-              />
+          {/* Video Section */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 50 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative"
+          >
+            <div className="aspect-video bg-muted rounded-2xl overflow-hidden border-2 border-border shadow-2xl relative group">
+              {/* Video element - using image as fallback poster */}
+              <video
+                ref={videoRef}
+                className="w-full h-full object-cover"
+                poster={heroImage}
+                muted={isMuted}
+                loop
+                playsInline
+              >
+                <source src="https://videos.pexels.com/video-files/3194277/3194277-uhd_2560_1440_30fps.mp4" type="video/mp4" />
+              </video>
+              
+              {/* Overlay gradient */}
+              <div className={`absolute inset-0 bg-gradient-to-t from-black/50 to-transparent transition-opacity duration-300 ${isPlaying ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`} />
+
+              {/* Play button */}
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handlePlayVideo}
+                className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${isPlaying ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}
+              >
+                <div className="w-20 h-20 bg-safety-yellow rounded-full flex items-center justify-center shadow-lg">
+                  <Play className={`w-8 h-8 text-foreground ${isPlaying ? 'hidden' : 'block'} ml-1`} />
+                  {isPlaying && (
+                    <div className="flex gap-1">
+                      <div className="w-1.5 h-6 bg-foreground rounded-full"></div>
+                      <div className="w-1.5 h-6 bg-foreground rounded-full"></div>
+                    </div>
+                  )}
+                </div>
+              </motion.button>
+
+              {/* Mute button */}
+              {isPlaying && (
+                <motion.button
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  onClick={toggleMute}
+                  className="absolute bottom-4 right-4 p-2 bg-black/50 rounded-full hover:bg-black/70 transition-colors"
+                >
+                  {isMuted ? (
+                    <VolumeX className="w-5 h-5 text-white" />
+                  ) : (
+                    <Volume2 className="w-5 h-5 text-white" />
+                  )}
+                </motion.button>
+              )}
             </div>
 
             {/* Floating stats card */}
-            <div className="absolute -bottom-6 -left-6 bg-card border border-border rounded-xl p-4 shadow-lg hidden md:block">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1, duration: 0.5 }}
+              className="absolute -bottom-6 -left-6 bg-card border-2 border-border rounded-xl p-4 shadow-lg hidden md:block"
+            >
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-safety-yellow rounded-lg flex items-center justify-center">
                   <span className="font-bold text-lg text-foreground">500+</span>
@@ -82,8 +219,21 @@ export function HeroSection() {
                   <p className="text-xs text-muted-foreground">Since 2003</p>
                 </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+
+            {/* Floating quality card */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.2, duration: 0.5 }}
+              className="absolute -top-4 -right-4 bg-safety-yellow text-foreground rounded-xl p-3 shadow-lg hidden md:block"
+            >
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-5 h-5" />
+                <span className="font-semibold text-sm">ISO Certified</span>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
