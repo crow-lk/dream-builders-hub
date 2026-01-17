@@ -6,6 +6,7 @@ import { ConsultantsSection } from "@/components/home/ConsultantsSection";
 import { HardwareSection } from "@/components/home/HardwareSection";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { CTASection } from "@/components/home/CTASection";
+import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 
 const Index = () => {
   return (
@@ -17,6 +18,7 @@ const Index = () => {
       <HardwareSection />
       <TestimonialsSection />
       <CTASection />
+      <FloatingWhatsApp />
     </Layout>
   );
 };
