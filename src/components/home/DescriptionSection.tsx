@@ -1,147 +1,203 @@
-import { motion } from "framer-motion";
-import { Award, Users, Building2, TrendingUp } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Award, Users, Building2, TrendingUp, Play, CheckCircle2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { useRef, useState } from "react";
 import ceoPortrait from "@/assets/ceo-portrait.jpg";
-import completedHome from "@/assets/completed-home.jpg";
+import constructionTeam from "@/assets/construction-team.jpg";
 
 const stats = [
-  { icon: Award, value: "20+", label: "Years Experience", color: "text-safety-yellow" },
-  { icon: Building2, value: "500+", label: "Projects Completed", color: "text-safety-orange" },
-  { icon: Users, value: "50+", label: "Team Members", color: "text-safety-blue" },
-  { icon: TrendingUp, value: "100%", label: "Client Satisfaction", color: "text-safety-green" },
+  { icon: Award, value: "20+", label: "Years Experience", color: "bg-safety-yellow" },
+  { icon: Building2, value: "500+", label: "Projects Completed", color: "bg-safety-orange" },
+  { icon: Users, value: "50+", label: "Team Members", color: "bg-safety-blue" },
+  { icon: TrendingUp, value: "100%", label: "Client Satisfaction", color: "bg-safety-green" },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
+const features = [
+  "Premium Quality Materials",
+  "Expert Craftsmanship",
+  "On-Time Delivery",
+  "Transparent Pricing",
+  "5 Year Warranty",
+  "24/7 Support",
+];
 
 export function DescriptionSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const imageY = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const textY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+
   return (
-    <section className="py-16 md:py-24 bg-background overflow-hidden">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Content */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="space-y-6"
-          >
-            <motion.div variants={itemVariants}>
-              <span className="text-safety-yellow font-semibold text-sm uppercase tracking-wider">About Us</span>
-              <h2 className="font-display text-3xl md:text-4xl font-bold mt-2">
-                Sandali Construction
-              </h2>
-            </motion.div>
-            
-            <motion.div variants={itemVariants} className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
-                At Sandali Construction, we are dedicated to the art of construction and the pursuit of excellence. Our company thrives on delivering superior quality and meticulous attention to detail in every project we undertake.
-              </p>
-              <p>
-                Collaboration is at the heart of our approach. We work closely with our clients, blending innovative techniques with traditional craftsmanship. Our use of cutting-edge technology ensures that we provide tailored solutions that meet the unique needs of each project.
-              </p>
+    <section ref={sectionRef} className="py-20 md:py-32 bg-background overflow-hidden relative">
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      <div className="absolute inset-0 gradient-mesh" />
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left - Image Column */}
+          <motion.div style={{ y: imageY }} className="relative">
+            {/* Main image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative rounded-3xl overflow-hidden shadow-2xl"
+            >
+              <img
+                src={constructionTeam}
+                alt="Our construction team at work"
+                className="w-full aspect-[4/5] object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
+              
+              {/* Play button overlay */}
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsPlaying(!isPlaying)}
+                className="absolute inset-0 flex items-center justify-center"
+              >
+                <div className="w-20 h-20 bg-safety-yellow rounded-full flex items-center justify-center shadow-lg pulse-glow">
+                  <Play className="w-8 h-8 text-foreground ml-1" fill="currentColor" />
+                </div>
+              </motion.button>
+
+              {/* Experience badge */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 }}
+                className="absolute bottom-6 left-6 bg-background/95 backdrop-blur-sm rounded-2xl p-4 shadow-xl"
+              >
+                <p className="font-display text-4xl font-bold text-safety-yellow">20+</p>
+                <p className="text-sm text-muted-foreground">Years of Excellence</p>
+              </motion.div>
             </motion.div>
 
-            {/* CEO Card */}
-            <motion.div variants={itemVariants}>
-              <Card className="bg-secondary border-none overflow-hidden">
-                <CardContent className="p-0">
-                  <div className="flex items-center gap-4 p-4">
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      className="w-20 h-20 rounded-full overflow-hidden border-2 border-safety-yellow"
-                    >
-                      <img
-                        src={ceoPortrait}
-                        alt="CEO Portrait"
-                        className="w-full h-full object-cover"
-                      />
-                    </motion.div>
-                    <div>
-                      <p className="text-sm text-muted-foreground">Owner / CEO</p>
-                      <p className="font-display font-semibold text-lg">Mr. A. Kulasiri Jayashingha</p>
-                      <p className="text-xs text-safety-yellow mt-1">20+ Years in Construction</p>
+            {/* Floating CEO card */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="absolute -right-8 top-1/4 hidden lg:block"
+            >
+              <Card className="bg-background shadow-xl border-2 border-safety-yellow/20">
+                <CardContent className="p-4 flex items-center gap-4">
+                  <motion.div
+                    whileHover={{ scale: 1.05, rotate: 5 }}
+                    className="w-16 h-16 rounded-full overflow-hidden border-2 border-safety-yellow"
+                  >
+                    <img src={ceoPortrait} alt="CEO" className="w-full h-full object-cover" />
+                  </motion.div>
+                  <div>
+                    <p className="font-semibold text-sm">A. Kulasiri Jayashingha</p>
+                    <p className="text-xs text-muted-foreground">Founder & CEO</p>
+                    <div className="flex gap-1 mt-1">
+                      {[...Array(5)].map((_, i) => (
+                        <div key={i} className="w-2 h-2 rounded-full bg-safety-yellow" />
+                      ))}
                     </div>
                   </div>
                 </CardContent>
               </Card>
             </motion.div>
-
-            {/* Image showcase */}
-            <motion.div
-              variants={itemVariants}
-              className="relative mt-8 rounded-2xl overflow-hidden"
-            >
-              <motion.img
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-                src={completedHome}
-                alt="Completed luxury home"
-                className="w-full h-64 object-cover rounded-2xl"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-2xl" />
-              <div className="absolute bottom-4 left-4 text-white">
-                <p className="font-semibold">Recent Project</p>
-                <p className="text-sm opacity-80">Luxury Villa - Colombo</p>
-              </div>
-            </motion.div>
           </motion.div>
 
-          {/* Stats Grid */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-2 gap-4"
-          >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                variants={itemVariants}
-                whileHover={{ y: -8, transition: { duration: 0.2 } }}
-              >
-                <Card className="h-full bg-card border-2 hover:border-safety-yellow/50 transition-colors overflow-hidden group">
-                  <CardContent className="p-6 text-center relative">
-                    {/* Animated background */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-safety-yellow/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
-                    />
-                    
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      transition={{ delay: index * 0.1, type: "spring", stiffness: 200 }}
-                      viewport={{ once: true }}
-                    >
-                      <stat.icon className={`w-10 h-10 mx-auto mb-4 ${stat.color}`} />
-                    </motion.div>
-                    
-                    <motion.p
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ delay: 0.2 + index * 0.1 }}
-                      viewport={{ once: true }}
-                      className="font-display text-3xl font-bold"
-                    >
-                      {stat.value}
-                    </motion.p>
-                    <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+          {/* Right - Content Column */}
+          <motion.div style={{ y: textY }} className="space-y-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <span className="inline-flex items-center gap-2 text-safety-yellow font-semibold text-sm uppercase tracking-wider">
+                <span className="w-8 h-px bg-safety-yellow" />
+                About Us
+              </span>
+              <h2 className="font-display text-3xl md:text-5xl font-bold mt-4 leading-tight">
+                Building Dreams with
+                <span className="text-gradient-yellow"> Excellence</span>
+              </h2>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-muted-foreground text-lg leading-relaxed"
+            >
+              At Sandali Construction, we are dedicated to the art of construction and the pursuit of excellence. 
+              Our company thrives on delivering superior quality and meticulous attention to detail in every project we undertake.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="text-muted-foreground leading-relaxed"
+            >
+              Collaboration is at the heart of our approach. We work closely with our clients, 
+              blending innovative techniques with traditional craftsmanship. Our use of cutting-edge 
+              technology ensures that we provide tailored solutions that meet the unique needs of each project.
+            </motion.p>
+
+            {/* Features grid */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="grid grid-cols-2 gap-3"
+            >
+              {features.map((feature, index) => (
+                <motion.div
+                  key={feature}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 * index }}
+                  className="flex items-center gap-2"
+                >
+                  <CheckCircle2 className="w-5 h-5 text-safety-green flex-shrink-0" />
+                  <span className="text-sm font-medium">{feature}</span>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* Stats row */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              className="grid grid-cols-4 gap-4 pt-8"
+            >
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  whileHover={{ y: -5 }}
+                  className="text-center"
+                >
+                  <div className={`w-12 h-12 ${stat.color} rounded-xl mx-auto mb-2 flex items-center justify-center`}>
+                    <stat.icon className="w-6 h-6 text-foreground" />
+                  </div>
+                  <p className="font-display text-xl font-bold">{stat.value}</p>
+                  <p className="text-xs text-muted-foreground">{stat.label}</p>
+                </motion.div>
+              ))}
+            </motion.div>
           </motion.div>
         </div>
       </div>
