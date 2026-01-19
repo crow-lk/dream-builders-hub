@@ -41,8 +41,8 @@ export default function Contact() {
       {/* Hero Section */}
       <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroContact} alt="Contact Us" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/60 to-background" />
+          <img src={heroContact} alt="Contact Us" className="w-full h-full object-cover brightness-90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/70 via-primary/50 to-background" />
         </div>
         
         <motion.div
@@ -63,7 +63,7 @@ export default function Contact() {
           <h1 className="font-display text-4xl md:text-6xl font-bold text-primary-foreground mb-4">
             Contact <span className="text-safety-yellow">Us</span>
           </h1>
-          <p className="text-xl text-primary-foreground/80 max-w-2xl mx-auto">
+          <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto">
             Let's discuss your dream project together
           </p>
         </motion.div>
@@ -72,13 +72,13 @@ export default function Contact() {
       {/* Contact Section */}
       <section className="py-20 md:py-32 relative overflow-hidden">
         <motion.div
-          animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
+          animate={{ scale: [1, 1.2, 1], opacity: [0.08, 0.15, 0.08] }}
           transition={{ duration: 10, repeat: Infinity }}
           className="absolute -bottom-32 -left-32 w-96 h-96 bg-safety-yellow rounded-full blur-3xl"
         />
 
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto items-start">
             {/* Contact Info */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -95,40 +95,42 @@ export default function Contact() {
                 </p>
               </div>
 
-              {contactInfo.map((item, index) => (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Card className="border-2 hover:border-safety-yellow/50 transition-all duration-300 hover:shadow-lg group">
-                    <CardContent className="p-4 flex items-start gap-4">
-                      <motion.div
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        className={`${item.color} w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0`}
-                      >
-                        <item.icon className="w-5 h-5 text-foreground" />
-                      </motion.div>
-                      <div>
-                        <h3 className="font-semibold text-sm text-muted-foreground">{item.label}</h3>
-                        <p className="text-foreground">{item.value}</p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+              <div className="space-y-4">
+                {contactInfo.map((item, index) => (
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Card className="border-2 hover:border-safety-yellow/50 transition-all duration-300 hover:shadow-lg group">
+                      <CardContent className="p-4 flex items-center gap-4">
+                        <motion.div
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          className={`${item.color} w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0`}
+                        >
+                          <item.icon className="w-5 h-5 text-foreground" />
+                        </motion.div>
+                        <div className="min-w-0 flex-1">
+                          <h3 className="font-semibold text-sm text-muted-foreground">{item.label}</h3>
+                          <p className="text-foreground text-sm md:text-base break-words">{item.value}</p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
 
               <div className="flex gap-3 pt-4">
                 <a href="tel:+94776265636" className="flex-1">
-                  <Button className="w-full bg-safety-red hover:bg-safety-red/90 gap-2 h-12">
+                  <Button className="w-full bg-safety-red hover:bg-safety-red/90 gap-2 h-12 text-sm md:text-base">
                     <Phone className="w-4 h-4" />
                     Call Now
                   </Button>
                 </a>
                 <a href="https://wa.me/94776265636" target="_blank" rel="noopener noreferrer" className="flex-1">
-                  <Button className="w-full bg-safety-green hover:bg-safety-green/90 gap-2 h-12">
+                  <Button className="w-full bg-safety-green hover:bg-safety-green/90 gap-2 h-12 text-sm md:text-base">
                     <MessageCircle className="w-4 h-4" />
                     WhatsApp
                   </Button>
@@ -137,7 +139,7 @@ export default function Contact() {
 
               {/* Map */}
               <Card className="border-2 overflow-hidden">
-                <div className="aspect-video bg-secondary flex items-center justify-center">
+                <div className="aspect-[16/10] bg-secondary">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.123!2d80.21!3d6.91!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTQnMzYuMCJOIDgwwrAxMiczMi40IkU!5e0!3m2!1sen!2slk!4v1234567890"
                     width="100%"
@@ -158,8 +160,8 @@ export default function Contact() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <Card className="border-2 sticky top-24">
-                <CardContent className="p-8">
+              <Card className="border-2 lg:sticky lg:top-24">
+                <CardContent className="p-6 md:p-8">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-12 h-12 bg-safety-yellow rounded-xl flex items-center justify-center">
                       <Send className="w-5 h-5 text-foreground" />

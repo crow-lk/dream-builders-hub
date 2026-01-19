@@ -8,16 +8,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Minus, Plus, Calculator as CalcIcon, ArrowRight, Check, Star, Sparkles, Crown, Gem } from "lucide-react";
 import heroCalculator from "@/assets/hero-calculator.jpg";
-import packageBudget from "@/assets/package-budget.jpg";
-import packagePremium from "@/assets/package-premium.jpg";
-import packageVip from "@/assets/package-vip.jpg";
-import packageVvip from "@/assets/package-vvip.jpg";
 
 const packages = [
-  { id: "budget1", name: "Budget Home 1", rate: 10000, badge: "bg-safety-blue", icon: Star, image: packageBudget, features: ["Standard finishing", "Essential fittings", "Basic electrical"] },
-  { id: "budget2", name: "Budget Home 2", rate: 12000, badge: "bg-safety-green", icon: Sparkles, image: packagePremium, features: ["Improved finishing", "Better quality fittings", "Enhanced electrical"], popular: true },
-  { id: "vip", name: "VIP", rate: 18000, badge: "bg-safety-orange", icon: Crown, image: packageVip, features: ["Premium materials", "Design support", "Premium electrical"] },
-  { id: "vvip", name: "VVIP", rate: 35000, badge: "bg-safety-yellow", icon: Gem, image: packageVvip, features: ["Luxury finishing", "Custom design", "Smart home ready"] },
+  { id: "budget1", name: "Budget Home 1", rate: 10000, badge: "bg-safety-blue", icon: Star, features: ["Standard finishing", "Essential fittings", "Basic electrical"] },
+  { id: "budget2", name: "Budget Home 2", rate: 12000, badge: "bg-safety-green", icon: Sparkles, features: ["Improved finishing", "Better quality fittings", "Enhanced electrical"], popular: true },
+  { id: "vip", name: "VIP", rate: 18000, badge: "bg-safety-orange", icon: Crown, features: ["Premium materials", "Design support", "Premium electrical"] },
+  { id: "vvip", name: "VVIP", rate: 35000, badge: "bg-safety-yellow", icon: Gem, features: ["Luxury finishing", "Custom design", "Smart home ready"] },
 ];
 
 export default function CalculatorPage() {
@@ -37,8 +33,8 @@ export default function CalculatorPage() {
       {/* Hero Section */}
       <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroCalculator} alt="Budget Calculator" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/60 to-background" />
+          <img src={heroCalculator} alt="Budget Calculator" className="w-full h-full object-cover brightness-90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/70 via-primary/50 to-background" />
         </div>
         
         <motion.div
@@ -59,7 +55,7 @@ export default function CalculatorPage() {
           <h1 className="font-display text-4xl md:text-6xl font-bold text-primary-foreground mb-4">
             Dream House <span className="text-safety-yellow">Calculator</span>
           </h1>
-          <p className="text-xl text-primary-foreground/80 max-w-2xl mx-auto">
+          <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto">
             Calculate your estimated construction budget instantly
           </p>
         </motion.div>
@@ -68,12 +64,12 @@ export default function CalculatorPage() {
       {/* Calculator Section */}
       <section className="py-20 md:py-32 relative overflow-hidden">
         <motion.div
-          animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
+          animate={{ scale: [1, 1.2, 1], opacity: [0.08, 0.15, 0.08] }}
           transition={{ duration: 10, repeat: Infinity }}
           className="absolute -top-32 -right-32 w-96 h-96 bg-safety-yellow rounded-full blur-3xl"
         />
 
-        <div className="container mx-auto px-4 max-w-6xl">
+        <div className="container mx-auto px-4 max-w-5xl">
           <div className="grid lg:grid-cols-5 gap-8">
             {/* Package Selection */}
             <motion.div
@@ -93,10 +89,10 @@ export default function CalculatorPage() {
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1 }}
                       onClick={() => setSelectedPackage(pkg)}
-                      className={`relative overflow-hidden rounded-2xl border-2 text-left transition-all duration-300 group ${
+                      className={`relative overflow-hidden rounded-2xl border-2 text-left transition-all duration-300 group p-5 ${
                         selectedPackage.id === pkg.id 
-                          ? "border-safety-yellow ring-2 ring-safety-yellow/20 shadow-lg" 
-                          : "border-border hover:border-muted-foreground hover:shadow-md"
+                          ? "border-safety-yellow ring-2 ring-safety-yellow/20 shadow-lg bg-safety-yellow/5" 
+                          : "border-border hover:border-muted-foreground hover:shadow-md bg-card"
                       }`}
                     >
                       {pkg.popular && (
@@ -105,35 +101,24 @@ export default function CalculatorPage() {
                         </span>
                       )}
                       
-                      {/* Image */}
-                      <div className="relative h-28 overflow-hidden">
-                        <img 
-                          src={pkg.image} 
-                          alt={pkg.name}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className={`${pkg.badge} text-foreground p-2 rounded-xl`}>
+                          <pkg.icon className="w-5 h-5" />
+                        </span>
+                        <span className="font-semibold text-lg">{pkg.name}</span>
                       </div>
                       
-                      <div className="p-4">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className={`${pkg.badge} text-foreground p-1.5 rounded-lg`}>
-                            <pkg.icon className="w-4 h-4" />
-                          </span>
-                          <span className="font-semibold">{pkg.name}</span>
-                        </div>
-                        <p className="font-bold text-lg">LKR {formatCurrency(pkg.rate)}</p>
-                        <p className="text-xs text-muted-foreground">per sq ft</p>
-                        
-                        <ul className="mt-3 space-y-1">
-                          {pkg.features.map((feature) => (
-                            <li key={feature} className="text-xs text-muted-foreground flex items-center gap-1">
-                              <Check className="w-3 h-3 text-safety-green" />
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                      <p className="font-bold text-2xl">LKR {formatCurrency(pkg.rate)}</p>
+                      <p className="text-sm text-muted-foreground mb-3">per sq ft</p>
+                      
+                      <ul className="space-y-1.5">
+                        {pkg.features.map((feature) => (
+                          <li key={feature} className="text-sm text-muted-foreground flex items-center gap-2">
+                            <Check className="w-4 h-4 text-safety-green flex-shrink-0" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
 
                       {selectedPackage.id === pkg.id && (
                         <motion.div
