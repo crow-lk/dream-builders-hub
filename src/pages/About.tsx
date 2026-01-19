@@ -1,7 +1,10 @@
+import { motion } from "framer-motion";
 import { Layout } from "@/components/layout/Layout";
-import { SectionHeader } from "@/components/ui/section-header";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle, Award, Clock, Users, Wrench, Paintbrush, Droplets, Zap, Home, Ruler, Leaf, Shield } from "lucide-react";
+import { CheckCircle, Award, Clock, Users, Wrench, Paintbrush, Droplets, Zap, Home, Ruler, Leaf, Shield, Heart, Target, Lightbulb } from "lucide-react";
+import heroAbout from "@/assets/hero-about.jpg";
+import ceoPortrait from "@/assets/ceo-portrait.jpg";
+import constructionTeam from "@/assets/construction-team.jpg";
 
 const services = [
   { icon: Ruler, name: "Site Analysis & Feasibility Studies" },
@@ -28,6 +31,13 @@ const team = [
   { name: "Mr. SP Weerarathne (BBA Special)", role: "Accountant", exp: "12+ Years Experience" },
 ];
 
+const values = [
+  { icon: Award, title: "Excellence", desc: "We strive for the highest quality in every project" },
+  { icon: Heart, title: "Integrity", desc: "Honest and transparent in all our dealings" },
+  { icon: Target, title: "Reliability", desc: "Delivering on time, every time" },
+  { icon: Lightbulb, title: "Innovation", desc: "Embracing modern techniques and materials" },
+];
+
 const commitments = [
   "Committed to superior quality and results",
   "Broad vision. Careful thought. Hand-crafted design",
@@ -40,107 +50,271 @@ const commitments = [
 export default function About() {
   return (
     <Layout>
-      {/* Hero */}
-      <section className="py-16 md:py-24 bg-secondary">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="font-display text-4xl md:text-5xl font-bold mb-4">About Sandali Construction</h1>
-          <p className="text-xl text-muted-foreground">Trusted Construction Partner Since 2003</p>
+      {/* Hero Section */}
+      <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={heroAbout} alt="About Us" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/60 to-background" />
         </div>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-10 text-center px-4"
+        >
+          <motion.span
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-2 bg-safety-yellow/20 backdrop-blur-sm px-4 py-2 rounded-full text-safety-yellow text-sm font-semibold mb-6"
+          >
+            <Users className="w-4 h-4" />
+            Since 2003
+          </motion.span>
+          <h1 className="font-display text-4xl md:text-6xl font-bold text-primary-foreground mb-4">
+            About <span className="text-safety-yellow">Sandali Construction</span>
+          </h1>
+          <p className="text-xl text-primary-foreground/80 max-w-2xl mx-auto">
+            Your Trusted Construction Partner for Over Two Decades
+          </p>
+        </motion.div>
       </section>
 
-      {/* Introduction */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="prose prose-lg mx-auto text-muted-foreground space-y-4">
-            <p>At Sandali Construction, we are dedicated to the art of construction and the pursuit of excellence. Our company thrives on delivering superior quality and meticulous attention to detail in every project we undertake.</p>
-            <p>With a steadfast commitment to timely completion, we ensure that your dreams are realized on schedule. Collaboration is at the heart of our approach—we work closely with clients, blending innovative techniques with traditional craftsmanship.</p>
-            <p>Established in 2003, Sandali Construction has evolved with industry trends and sustainable practices, building long-lasting connections and exceeding expectations for over two decades.</p>
-          </div>
-          <Card className="bg-secondary border-none mt-8 max-w-md mx-auto">
-            <CardContent className="p-6 flex items-center gap-4">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
-                <Users className="w-8 h-8 text-primary-foreground" />
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Owner / CEO</p>
-                <p className="font-display font-semibold text-lg">Mr. A. Kulasiri Jayashingha</p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
+      {/* Introduction Section */}
+      <section className="py-20 md:py-32 relative overflow-hidden">
+        <motion.div
+          animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
+          transition={{ duration: 10, repeat: Infinity }}
+          className="absolute -top-32 -right-32 w-96 h-96 bg-safety-yellow rounded-full blur-3xl"
+        />
 
-      {/* Why Choose Us */}
-      <section className="py-16 bg-secondary">
         <div className="container mx-auto px-4">
-          <SectionHeader title="Why Choose Us" />
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <Card className="card-hover border-2"><CardContent className="p-6 text-center">
-              <Award className="w-12 h-12 mx-auto mb-4 text-safety-yellow" />
-              <h3 className="font-semibold text-lg mb-2">Unwavering Quality</h3>
-              <p className="text-sm text-muted-foreground">Superior craftsmanship and attention to detail in every project.</p>
-            </CardContent></Card>
-            <Card className="card-hover border-2"><CardContent className="p-6 text-center">
-              <Clock className="w-12 h-12 mx-auto mb-4 text-safety-orange" />
-              <h3 className="font-semibold text-lg mb-2">Proven Track Record</h3>
-              <p className="text-sm text-muted-foreground">On time and within budget delivery for 20+ years.</p>
-            </CardContent></Card>
-            <Card className="card-hover border-2"><CardContent className="p-6 text-center">
-              <CheckCircle className="w-12 h-12 mx-auto mb-4 text-safety-green" />
-              <h3 className="font-semibold text-lg mb-2">Client-Centric</h3>
-              <p className="text-sm text-muted-foreground">Innovative solutions tailored to your unique needs.</p>
-            </CardContent></Card>
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <span className="text-safety-yellow font-semibold text-sm uppercase tracking-wider">Our Story</span>
+              <h2 className="font-display text-3xl md:text-4xl font-bold">
+                Building Dreams <span className="text-safety-yellow">Since 2003</span>
+              </h2>
+              <div className="space-y-4 text-muted-foreground">
+                <p>
+                  At Sandali Construction, we are dedicated to the art of construction and the pursuit of excellence. 
+                  Our company thrives on delivering superior quality and meticulous attention to detail in every project we undertake.
+                </p>
+                <p>
+                  With a steadfast commitment to timely completion, we ensure that your dreams are realized on schedule. 
+                  Collaboration is at the heart of our approach—we work closely with clients, blending innovative techniques with traditional craftsmanship.
+                </p>
+                <p>
+                  Established in 2003, Sandali Construction has evolved with industry trends and sustainable practices, 
+                  building long-lasting connections and exceeding expectations for over two decades.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="relative rounded-2xl overflow-hidden">
+                <img src={constructionTeam} alt="Our Team" className="w-full h-80 object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent" />
+              </div>
+              
+              {/* CEO Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="absolute -bottom-8 left-4 right-4"
+              >
+                <Card className="bg-card/95 backdrop-blur-sm border-2">
+                  <CardContent className="p-4 flex items-center gap-4">
+                    <img src={ceoPortrait} alt="CEO" className="w-16 h-16 rounded-full object-cover ring-2 ring-safety-yellow" />
+                    <div>
+                      <p className="text-sm text-muted-foreground">Founder & CEO</p>
+                      <p className="font-display font-bold text-lg">Mr. A. Kulasiri Jayashingha</p>
+                      <p className="text-xs text-safety-yellow">20+ Years of Leadership</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Services */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <SectionHeader title="Our Services" />
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
-            {services.map((s) => (
-              <div key={s.name} className="flex items-center gap-3 p-4 bg-secondary rounded-lg">
-                <s.icon className="w-5 h-5 text-safety-yellow flex-shrink-0" />
-                <span className="text-sm font-medium">{s.name}</span>
-              </div>
+      {/* Values Section */}
+      <section className="py-20 bg-secondary relative overflow-hidden">
+        <div className="absolute inset-0 pattern-grid opacity-30" />
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="text-safety-yellow font-semibold text-sm uppercase tracking-wider">Our Values</span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold mt-2">
+              Why Choose <span className="text-safety-yellow">Us</span>
+            </h2>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            {values.map((value, index) => (
+              <motion.div
+                key={value.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card className="h-full border-2 hover:border-safety-yellow/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group text-center">
+                  <CardContent className="p-6">
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      className="w-16 h-16 bg-safety-yellow rounded-2xl flex items-center justify-center mx-auto mb-4"
+                    >
+                      <value.icon className="w-8 h-8 text-foreground" />
+                    </motion.div>
+                    <h3 className="font-semibold text-lg mb-2">{value.title}</h3>
+                    <p className="text-sm text-muted-foreground">{value.desc}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Team */}
-      <section className="py-16 bg-secondary">
+      {/* Services Section */}
+      <section className="py-20 md:py-32">
         <div className="container mx-auto px-4">
-          <SectionHeader title="Our Team" subtitle="Skilled professionals dedicated to shaping your vision into reality." />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {team.map((m) => (
-              <Card key={m.name} className="border-2"><CardContent className="p-6">
-                <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mb-4">
-                  <span className="text-primary-foreground font-bold">{m.name.charAt(0)}</span>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="text-safety-yellow font-semibold text-sm uppercase tracking-wider">What We Do</span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold mt-2">
+              Our <span className="text-safety-yellow">Services</span>
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+            {services.map((s, index) => (
+              <motion.div
+                key={s.name}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className="flex items-center gap-3 p-4 bg-secondary rounded-xl hover:bg-secondary/80 transition-colors group"
+              >
+                <div className="w-10 h-10 bg-safety-yellow/20 rounded-lg flex items-center justify-center group-hover:bg-safety-yellow transition-colors">
+                  <s.icon className="w-5 h-5 text-safety-yellow group-hover:text-foreground transition-colors" />
                 </div>
-                <h3 className="font-semibold">{m.name}</h3>
-                <p className="text-sm text-muted-foreground">{m.role}</p>
-                {m.exp && <p className="text-xs text-safety-yellow mt-1">{m.exp}</p>}
-              </CardContent></Card>
+                <span className="text-sm font-medium">{s.name}</span>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Commitment */}
-      <section className="py-16">
+      {/* Team Section */}
+      <section className="py-20 bg-secondary">
         <div className="container mx-auto px-4">
-          <SectionHeader title="Our Commitment" />
-          <div className="max-w-2xl mx-auto">
-            <ul className="space-y-3">
-              {commitments.map((c) => (
-                <li key={c} className="flex items-center gap-3">
-                  <CheckCircle className="w-5 h-5 text-safety-green flex-shrink-0" />
-                  <span>{c}</span>
-                </li>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="text-safety-yellow font-semibold text-sm uppercase tracking-wider">Our People</span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold mt-2">
+              Meet Our <span className="text-safety-yellow">Team</span>
+            </h2>
+            <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
+              Skilled professionals dedicated to shaping your vision into reality.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {team.map((m, index) => (
+              <motion.div
+                key={m.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card className="border-2 hover:border-safety-yellow/50 transition-all duration-300 hover:shadow-lg group">
+                  <CardContent className="p-6">
+                    <div className="w-14 h-14 bg-gradient-to-br from-safety-yellow to-safety-orange rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                      <span className="text-foreground font-bold text-xl">{m.name.split(' ').map(n => n[0]).slice(0, 2).join('')}</span>
+                    </div>
+                    <h3 className="font-semibold">{m.name}</h3>
+                    <p className="text-sm text-muted-foreground">{m.role}</p>
+                    {m.exp && (
+                      <span className="inline-block mt-2 text-xs bg-safety-yellow/20 text-safety-yellow px-2 py-1 rounded-full">
+                        {m.exp}
+                      </span>
+                    )}
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Commitment Section */}
+      <section className="py-20 md:py-32 relative overflow-hidden">
+        <motion.div
+          animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
+          transition={{ duration: 10, repeat: Infinity }}
+          className="absolute -bottom-32 -left-32 w-96 h-96 bg-safety-yellow rounded-full blur-3xl"
+        />
+
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="text-safety-yellow font-semibold text-sm uppercase tracking-wider">Our Promise</span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold mt-2">
+              Our <span className="text-safety-yellow">Commitment</span>
+            </h2>
+          </motion.div>
+
+          <div className="max-w-3xl mx-auto">
+            <div className="grid sm:grid-cols-2 gap-4">
+              {commitments.map((c, index) => (
+                <motion.div
+                  key={c}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="flex items-start gap-3 p-4 bg-secondary rounded-xl"
+                >
+                  <CheckCircle className="w-5 h-5 text-safety-green flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">{c}</span>
+                </motion.div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       </section>
