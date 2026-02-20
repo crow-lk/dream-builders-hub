@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Clock, CheckCircle, Shield, Volume2, VolumeX } from "lucide-react";
+import { Clock, CheckCircle, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import heroImage from "@/assets/hero-construction.jpg";
+import heroVideo from "@/assets/hero-video.mp4";
 const highlights = [{
   icon: Clock,
   text: "20+ Years Experience"
@@ -39,42 +40,33 @@ const itemVariants = {
   }
 };
 export function HeroSection() {
-  const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
+
   useEffect(() => {
-    // Auto-play video on mount
     if (videoRef.current) {
       videoRef.current.play().catch(() => {
-        // Autoplay failed, that's ok
+        // Autoplay blocked by browser, fallback to poster image
       });
     }
   }, []);
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
-  };
+
   return <section className="relative overflow-hidden min-h-screen flex items-center justify-center">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
-        <video ref={videoRef} className="w-full h-full object-cover" poster={heroImage} muted={isMuted} loop playsInline autoPlay>
-          <source src="https://videos.pexels.com/video-files/3194277/3194277-uhd_2560_1440_30fps.mp4" type="video/mp4" />
+        <video
+          ref={videoRef}
+          className="w-full h-full object-cover"
+          poster={heroImage}
+          muted
+          loop
+          playsInline
+          autoPlay
+        >
+          <source src={heroVideo} type="video/mp4" />
         </video>
         {/* Dark overlay for readability */}
         <div className="absolute inset-0 bg-black/60" />
       </div>
-
-      {/* Mute/Unmute Button */}
-      <motion.button initial={{
-      opacity: 0
-    }} animate={{
-      opacity: 1
-    }} transition={{
-      delay: 1
-    }} onClick={toggleMute} className="absolute bottom-8 right-8 z-20 p-3 bg-black/50 rounded-full hover:bg-black/70 transition-colors border border-white/20">
-        {isMuted ? <VolumeX className="w-6 h-6 text-white" /> : <Volume2 className="w-6 h-6 text-white" />}
-      </motion.button>
 
       {/* Centered Content */}
       <div className="container mx-auto px-4 relative z-10">
