@@ -57,7 +57,7 @@ export function HeroSection() {
       <div className="absolute inset-0 z-0">
         <video
           ref={videoRef}
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="absolute inset-0 w-full h-full object-cover object-center animate-ken-burns"
           poster={heroImage}
           muted
           loop
