@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Calculator, Check, Sparkles, Crown, Gem, Star, ArrowRight } from "lucide-react";
+import { Calculator, Check, Sparkles, Crown, Gem, Star, ArrowRight, BedDouble, Bath, Car } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import packageBudget from "@/assets/package-budget.jpg";
 import packagePremium from "@/assets/package-premium.jpg";
 import packageVip from "@/assets/package-vip.jpg";
@@ -10,6 +10,7 @@ import packageVvip from "@/assets/package-vvip.jpg";
 
 const packages = [
   {
+    id: "budget-home-1",
     name: "Budget Home 1",
     rate: 10000,
     badge: "Essential",
@@ -17,6 +18,7 @@ const packages = [
     badgeColor: "bg-safety-blue",
     description: "Perfect for budget-conscious first-time home builders",
     image: packageBudget,
+    specs: { bedrooms: "3", bathrooms: "2", parking: "1 Car" },
     features: [
       "Standard finishing",
       "Essential fittings",
@@ -26,6 +28,7 @@ const packages = [
     ],
   },
   {
+    id: "budget-home-2",
     name: "Budget Home 2",
     rate: 12000,
     badge: "Popular",
@@ -33,6 +36,7 @@ const packages = [
     badgeColor: "bg-safety-green",
     description: "Best value for upgraded budget builds",
     image: packagePremium,
+    specs: { bedrooms: "3–4", bathrooms: "2–3", parking: "1–2 Cars" },
     features: [
       "Improved finishing",
       "Better quality fittings",
@@ -43,6 +47,7 @@ const packages = [
     popular: true,
   },
   {
+    id: "vip",
     name: "VIP",
     rate: 18000,
     badge: "Premium",
@@ -50,6 +55,7 @@ const packages = [
     badgeColor: "bg-safety-orange",
     description: "Premium living with superior materials",
     image: packageVip,
+    specs: { bedrooms: "4–5", bathrooms: "3–4", parking: "2 Cars" },
     features: [
       "Premium materials",
       "Design support included",
@@ -60,6 +66,7 @@ const packages = [
     ],
   },
   {
+    id: "vvip",
     name: "VVIP",
     rate: 35000,
     badge: "Luxury",
@@ -67,6 +74,7 @@ const packages = [
     badgeColor: "bg-safety-yellow",
     description: "Ultimate luxury for discerning clients",
     image: packageVvip,
+    specs: { bedrooms: "5+", bathrooms: "4+", parking: "3+ Cars" },
     features: [
       "Luxury finishing throughout",
       "Custom design selections",
@@ -157,7 +165,7 @@ export function PackagesSection() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
                   
-                  {/* Price overlay */}
+                  {/* Badge overlay */}
                   <div className="absolute bottom-4 left-4 right-4">
                     <div className="flex items-center gap-2 mb-2">
                       <span className={`${pkg.badgeColor} text-foreground p-2 rounded-xl`}>
@@ -173,46 +181,63 @@ export function PackagesSection() {
 
                 <CardContent className="pt-6 pb-4">
                   <p className="text-sm text-muted-foreground mb-4">{pkg.description}</p>
-                  
-                  <div className="mb-6 p-4 rounded-xl bg-secondary">
-                    <span className="font-display text-3xl font-bold text-safety-yellow">
-                      LKR {formatCurrency(pkg.rate)}
-                    </span>
-                    <span className="text-muted-foreground text-sm"> / sq ft</span>
+
+                  {/* Specs row */}
+                  <div className="grid grid-cols-3 gap-2 mb-5 p-3 rounded-xl bg-secondary">
+                    <div className="flex flex-col items-center gap-1">
+                      <BedDouble className="w-4 h-4 text-muted-foreground" />
+                      <span className="font-bold text-sm">{pkg.specs.bedrooms}</span>
+                      <span className="text-[10px] text-muted-foreground">Beds</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-1 border-x border-border">
+                      <Bath className="w-4 h-4 text-muted-foreground" />
+                      <span className="font-bold text-sm">{pkg.specs.bathrooms}</span>
+                      <span className="text-[10px] text-muted-foreground">Baths</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-1">
+                      <Car className="w-4 h-4 text-muted-foreground" />
+                      <span className="font-bold text-sm text-center leading-tight">{pkg.specs.parking}</span>
+                      <span className="text-[10px] text-muted-foreground">Parking</span>
+                    </div>
                   </div>
                   
-                  <ul className="space-y-2">
-                    {pkg.features.slice(0, 5).map((feature, featureIndex) => (
-                      <motion.li
-                        key={feature}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: featureIndex * 0.05 }}
-                        className="flex items-start gap-2 text-sm"
-                      >
+                  <div className="mb-4 p-3 rounded-xl bg-secondary flex items-baseline gap-1">
+                    <span className="font-display text-2xl font-bold text-safety-yellow">
+                      LKR {formatCurrency(pkg.rate)}
+                    </span>
+                    <span className="text-muted-foreground text-sm">/ sq ft</span>
+                  </div>
+                  
+                  <ul className="space-y-1.5">
+                    {pkg.features.slice(0, 4).map((feature) => (
+                      <li key={feature} className="flex items-start gap-2 text-sm">
                         <Check className="w-4 h-4 text-safety-green flex-shrink-0 mt-0.5" />
                         <span>{feature}</span>
-                      </motion.li>
+                      </li>
                     ))}
-                    {pkg.features.length > 5 && (
+                    {pkg.features.length > 4 && (
                       <li className="text-sm text-muted-foreground pl-6">
-                        +{pkg.features.length - 5} more features
+                        +{pkg.features.length - 4} more features
                       </li>
                     )}
                   </ul>
                 </CardContent>
 
-                <CardFooter className="pt-0 pb-6">
-                  <Link to="/calculator" className="w-full">
-                    <Button className={`w-full gap-2 group/btn ${
+                <CardFooter className="pt-0 pb-6 gap-2">
+                  <Link to={`/packages/${pkg.id}`} className="flex-1">
+                    <Button variant="outline" className="w-full gap-2 group/btn">
+                      View Details
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
+                  <Link to="/calculator" className="flex-1">
+                    <Button className={`w-full gap-2 ${
                       pkg.popular 
                         ? 'bg-safety-green hover:bg-safety-green/90' 
                         : 'bg-primary hover:bg-primary/90'
                     }`}>
-                      <Calculator className="w-4 h-4 group-hover/btn:rotate-12 transition-transform" />
-                      Calculate Budget
-                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                      <Calculator className="w-4 h-4" />
+                      Calculate
                     </Button>
                   </Link>
                 </CardFooter>
@@ -221,11 +246,25 @@ export function PackagesSection() {
           ))}
         </div>
 
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-center mt-10"
+        >
+          <Link to="/packages">
+            <Button size="lg" variant="outline" className="gap-2">
+              View All Packages
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+          </Link>
+        </motion.div>
+
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center text-sm text-muted-foreground mt-12 max-w-2xl mx-auto"
+          className="text-center text-sm text-muted-foreground mt-6 max-w-2xl mx-auto"
         >
           <strong>Note:</strong> Rates are estimates; final cost depends on design, site conditions, and material selections. 
           Contact us for a personalized quote.
