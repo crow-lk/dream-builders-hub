@@ -43,19 +43,21 @@ export function HeroSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.playbackRate = 0.5;
+      video.play().catch(() => {
         // Autoplay blocked by browser, fallback to poster image
       });
     }
   }, []);
 
-  return <section className="relative overflow-hidden min-h-screen flex items-center justify-center">
+  return <section className="relative overflow-hidden w-screen min-h-screen flex items-center justify-center">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <video
           ref={videoRef}
-          className="w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover object-center"
           poster={heroImage}
           muted
           loop
