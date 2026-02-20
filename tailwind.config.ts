@@ -92,6 +92,13 @@ export default {
           "0%": { transform: "translateX(100%)" },
           "100%": { transform: "translateX(0)" },
         },
+        "ken-burns": {
+          "0%":   { transform: "scale(1)    translateX(0%)   translateY(0%)" },
+          "25%":  { transform: "scale(1.08) translateX(-1%)  translateY(-1%)" },
+          "50%":  { transform: "scale(1.12) translateX(1%)   translateY(-0.5%)" },
+          "75%":  { transform: "scale(1.08) translateX(-0.5%) translateY(1%)" },
+          "100%": { transform: "scale(1)    translateX(0%)   translateY(0%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -99,6 +106,7 @@ export default {
         "fade-in": "fade-in 0.5s ease-out",
         "fade-in-up": "fade-in-up 0.6s ease-out",
         "slide-in-right": "slide-in-right 0.3s ease-out",
+        "ken-burns": "ken-burns 30s ease-in-out infinite",
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
