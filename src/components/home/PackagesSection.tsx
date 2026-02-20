@@ -1,9 +1,83 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Calculator, Check, Sparkles, ArrowRight } from "lucide-react";
+import { Calculator, Check, Sparkles, Crown, Gem, Star, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { packages } from "@/data/packages";
+import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card";
+import packageBudget from "@/assets/package-budget.jpg";
+import packagePremium from "@/assets/package-premium.jpg";
+import packageVip from "@/assets/package-vip.jpg";
+import packageVvip from "@/assets/package-vvip.jpg";
+
+const packages = [
+  {
+    name: "Budget Home 1",
+    rate: 10000,
+    badge: "Essential",
+    icon: Star,
+    badgeColor: "bg-safety-blue",
+    description: "Perfect for budget-conscious first-time home builders",
+    image: packageBudget,
+    features: [
+      "Standard finishing",
+      "Essential fittings",
+      "Basic electrical & plumbing",
+      "Standard flooring",
+      "Basic paint finish",
+    ],
+  },
+  {
+    name: "Budget Home 2",
+    rate: 12000,
+    badge: "Popular",
+    icon: Sparkles,
+    badgeColor: "bg-safety-green",
+    description: "Best value for upgraded budget builds",
+    image: packagePremium,
+    features: [
+      "Improved finishing",
+      "Better quality fittings",
+      "Enhanced electrical",
+      "Ceramic tile flooring",
+      "Quality paint finish",
+    ],
+    popular: true,
+  },
+  {
+    name: "VIP",
+    rate: 18000,
+    badge: "Premium",
+    icon: Crown,
+    badgeColor: "bg-safety-orange",
+    description: "Premium living with superior materials",
+    image: packageVip,
+    features: [
+      "Premium materials",
+      "Design support included",
+      "Premium electrical & plumbing",
+      "Porcelain tile flooring",
+      "Premium paint & finishes",
+      "Custom woodwork",
+    ],
+  },
+  {
+    name: "VVIP",
+    rate: 35000,
+    badge: "Luxury",
+    icon: Gem,
+    badgeColor: "bg-safety-yellow",
+    description: "Ultimate luxury for discerning clients",
+    image: packageVvip,
+    features: [
+      "Luxury finishing throughout",
+      "Custom design selections",
+      "High-end electrical systems",
+      "Imported tile options",
+      "Designer paint & textures",
+      "Premium woodwork",
+      "Smart home ready",
+    ],
+  },
+];
 
 export function PackagesSection() {
   const formatCurrency = (amount: number) => {
