@@ -10,6 +10,7 @@ import CalculatorPage from "./pages/Calculator";
 import Contact from "./pages/Contact";
 import Admin from "./pages/Admin";
 import AdminLogin from "./pages/AdminLogin";
+import PackageDetail from "./pages/PackageDetail";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/packages/:id" element={<PackageDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
