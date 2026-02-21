@@ -1,113 +1,116 @@
 import { motion } from "framer-motion";
-import { useRef } from "react";
-import constructionTeam from "@/assets/construction-team.jpg";
+import { Landmark, Sofa, Building2 } from "lucide-react";
 import interiorLuxury from "@/assets/interior-luxury.jpg";
 
 const specializations = [
-  { name: "Architecture", icon: "◆" },
-  { name: "Interiors", icon: "◆" },
-  { name: "Planning", icon: "◆" },
-  { name: "Renovation", icon: "◆" },
+  { name: "Architecture", icon: Landmark },
+  { name: "Interiors", icon: Sofa },
+  { name: "Planning", icon: Building2 },
 ];
 
 export function DescriptionSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
   return (
-    <section ref={sectionRef} className="py-24 md:py-36 bg-background overflow-hidden relative">
+    <section className="py-24 md:py-36 bg-background relative overflow-hidden">
+      {/* Top border line */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
+      {/* Large watermark */}
+      <div className="absolute left-8 top-1/2 -translate-y-1/2 pointer-events-none select-none hidden lg:block">
+        <span className="font-display text-[12vw] font-bold text-foreground/[0.02] leading-none">
+          about
+        </span>
+      </div>
+
       <div className="container mx-auto px-4 relative z-10">
-        {/* Section label */}
+        {/* Section title — centered */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-right mb-16"
+          className="text-center mb-16 md:mb-20"
         >
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">
-            About <span className="text-primary italic">HomeBuilders</span>
+          <h2 className="font-display text-2xl md:text-4xl font-bold uppercase tracking-[0.15em] text-foreground">
+            About{" "}
+            <span className="text-primary">HomeBuilders</span>
           </h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left - Text Content */}
+        {/* 3-column grid */}
+        <div className="grid lg:grid-cols-3 gap-10 lg:gap-8 items-start">
+          {/* Left — philosophy text */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.6 }}
+            className="space-y-5"
+          >
+            <h3 className="font-display text-xl md:text-2xl font-semibold text-foreground italic leading-snug">
+              we turn ideas into
+              <br />
+              works of art.
+            </h3>
+            <p className="text-muted-foreground text-sm font-light leading-relaxed">
+              For each project we establish relationships with partners who we
+              know will help us create added value for your project. As well as
+              bringing together the public and private sectors, we make
+              sector-overarching links to gather knowledge and to learn from each
+              other. The way we undertake projects is based on permanently
+              applying values that reinforce each other: socio-cultural value,
+              experiental value, building-technical value and economical value.
+              This way of working allows us to raise your project to a higher
+              level.
+            </p>
+          </motion.div>
+
+          {/* Center — specializations */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.15 }}
             className="space-y-8"
           >
-            <div className="bg-secondary border border-border/50 p-8 rounded-sm">
-              <h3 className="font-display text-xl md:text-2xl font-semibold text-foreground mb-4 italic">
-                we turn ideas into<br />works of art.
-              </h3>
-              <p className="text-muted-foreground font-light leading-relaxed text-sm">
-                For each project we establish relationships with partners who we know will help us 
-                create added value for your project. As well as bringing together the public and 
-                private sectors, we work to ensure the best solutions. This way we understand the 
-                aspirations that reinforce each other, socio-cultural value, and economical value. 
-                This way of working allows us to make your project fit in its environment naturally.
-              </p>
-            </div>
+            <h3 className="font-display text-xl md:text-2xl font-semibold text-foreground italic leading-snug">
+              our
+              <br />
+              specialization:
+            </h3>
 
-            <div className="bg-secondary border border-border/50 p-8 rounded-sm">
-              <h3 className="font-display text-lg font-semibold text-foreground mb-6">
-                Our <span className="text-primary">Specialization:</span>
-              </h3>
-              <div className="space-y-4">
-                {specializations.map((spec, index) => (
-                  <motion.div
-                    key={spec.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 * index }}
-                    className="flex items-center gap-3 group"
-                  >
-                    <span className="text-primary text-xs">{spec.icon}</span>
-                    <span className="text-sm uppercase tracking-[0.2em] text-muted-foreground group-hover:text-foreground transition-colors">
-                      {spec.name}
-                    </span>
-                    <span className="flex-1 h-px bg-border/50" />
-                  </motion.div>
-                ))}
-              </div>
+            <div className="space-y-6">
+              {specializations.map((spec, i) => (
+                <motion.div
+                  key={spec.name}
+                  initial={{ opacity: 0, x: -15 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 + i * 0.1 }}
+                  className="flex flex-col gap-2"
+                >
+                  <spec.icon className="w-7 h-7 text-primary" strokeWidth={1.5} />
+                  <span className="text-xs uppercase tracking-[0.25em] text-foreground font-medium">
+                    {spec.name}
+                  </span>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
 
-          {/* Right - Image */}
+          {/* Right — image */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             className="relative"
           >
-            <div className="relative rounded-sm overflow-hidden">
+            <div className="overflow-hidden rounded-sm">
               <img
                 src={interiorLuxury}
-                alt="Interior design showcase"
-                className="w-full aspect-[4/5] object-cover"
+                alt="Architectural design showcase"
+                className="w-full aspect-[4/5] object-cover grayscale hover:grayscale-0 transition-all duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
             </div>
-
-            {/* Small overlapping image */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              className="absolute -bottom-8 -left-8 w-48 h-48 rounded-sm overflow-hidden border-4 border-background shadow-2xl hidden lg:block"
-            >
-              <img
-                src={constructionTeam}
-                alt="Our team"
-                className="w-full h-full object-cover"
-              />
-            </motion.div>
           </motion.div>
         </div>
       </div>
