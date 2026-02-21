@@ -78,7 +78,8 @@ export function CTASection() {
             <Link to="/contact">
               <Button
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold group text-xs uppercase tracking-wider px-8 py-6 shadow-lg hover:shadow-xl transition-all rounded-sm"
+                variant="outline"
+                className="font-medium group text-xs uppercase tracking-[0.2em] px-10 py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all rounded-none"
               >
                 Get Free Quote
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -88,7 +89,7 @@ export function CTASection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-border text-foreground hover:border-primary hover:text-primary text-xs uppercase tracking-wider px-8 py-6 rounded-sm"
+                className="text-xs uppercase tracking-[0.2em] px-10 py-6 border-border text-foreground hover:border-primary hover:text-primary transition-all rounded-none"
               >
                 Calculate Budget
               </Button>

@@ -100,7 +100,8 @@ export function HeroSection() {
             <Link to="/contact">
               <Button
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold group text-sm uppercase tracking-wider px-8 py-6"
+                variant="outline"
+                className="font-medium group text-xs uppercase tracking-[0.2em] px-10 py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all rounded-none"
               >
                 Get a Free Consultation
                 <motion.span
@@ -116,7 +117,7 @@ export function HeroSection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="group text-sm uppercase tracking-wider px-8 py-6 bg-white/5 border-white/20 text-white hover:bg-white/10 backdrop-blur-sm"
+                className="group text-xs uppercase tracking-[0.2em] px-10 py-6 border-white/30 text-white/80 hover:border-primary hover:text-primary transition-all rounded-none"
               >
                 View Packages
               </Button>

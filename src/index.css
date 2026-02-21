@@ -19,8 +19,8 @@
     --popover: 0 0% 10%;
     --popover-foreground: 40 10% 90%;
 
-    /* Primary - Gold/Copper accent */
-    --primary: 33 60% 50%;
+    /* Primary - Warm taupe #c9a47f */
+    --primary: 28 35% 64%;
     --primary-foreground: 0 0% 5%;
 
     /* Secondary - Dark surface */
@@ -31,13 +31,13 @@
     --muted: 0 0% 14%;
     --muted-foreground: 0 0% 55%;
 
-    /* Accent - Warm copper */
-    --accent: 30 50% 45%;
+    /* Accent - Warm taupe darker */
+    --accent: 28 30% 52%;
     --accent-foreground: 40 10% 95%;
 
     /* Construction Cap Colors - toned down for dark theme */
-    --safety-yellow: 33 60% 50%;
-    --safety-orange: 25 65% 45%;
+    --safety-yellow: 28 35% 64%;
+    --safety-orange: 25 30% 50%;
     --safety-red: 0 65% 45%;
     --safety-blue: 210 40% 50%;
     --safety-green: 145 40% 42%;
@@ -49,19 +49,19 @@
     /* Borders and inputs */
     --border: 0 0% 18%;
     --input: 0 0% 18%;
-    --ring: 33 60% 50%;
+    --ring: 28 35% 64%;
 
     --radius: 0.25rem;
 
     /* Sidebar */
     --sidebar-background: 0 0% 8%;
     --sidebar-foreground: 40 10% 85%;
-    --sidebar-primary: 33 60% 50%;
+    --sidebar-primary: 28 35% 64%;
     --sidebar-primary-foreground: 0 0% 5%;
     --sidebar-accent: 0 0% 14%;
     --sidebar-accent-foreground: 40 10% 85%;
     --sidebar-border: 0 0% 18%;
-    --sidebar-ring: 33 60% 50%;
+    --sidebar-ring: 28 35% 64%;
   }
 }
 
@@ -82,7 +82,7 @@
 @layer utilities {
   /* Gradient utilities */
   .gradient-gold {
-    background: linear-gradient(135deg, hsl(33 60% 50%) 0%, hsl(25 65% 45%) 100%);
+    background: linear-gradient(135deg, hsl(28 35% 64%) 0%, hsl(25 30% 50%) 100%);
   }
 
   .gradient-dark {
@@ -91,15 +91,15 @@
 
   .gradient-mesh {
     background: 
-      radial-gradient(at 40% 20%, hsl(33 60% 50% / 0.06) 0px, transparent 50%),
-      radial-gradient(at 80% 0%, hsl(25 65% 45% / 0.06) 0px, transparent 50%),
+      radial-gradient(at 40% 20%, hsl(28 35% 64% / 0.06) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, hsl(25 30% 50% / 0.06) 0px, transparent 50%),
       radial-gradient(at 0% 50%, hsl(210 40% 50% / 0.03) 0px, transparent 50%),
       radial-gradient(at 80% 50%, hsl(145 40% 42% / 0.03) 0px, transparent 50%),
-      radial-gradient(at 0% 100%, hsl(33 60% 50% / 0.06) 0px, transparent 50%);
+      radial-gradient(at 0% 100%, hsl(28 35% 64% / 0.06) 0px, transparent 50%);
   }
 
   .gradient-radial {
-    background: radial-gradient(circle at center, hsl(33 60% 50% / 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle at center, hsl(28 35% 64% / 0.08) 0%, transparent 70%);
   }
 
   /* Card hover effect */
@@ -124,13 +124,13 @@
 
   .text-gradient-gold {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(33 60% 55%) 0%, hsl(25 65% 45%) 100%);
+    background-image: linear-gradient(135deg, hsl(28 35% 70%) 0%, hsl(25 30% 50%) 100%);
   }
 
   /* Legacy alias */
   .text-gradient-yellow {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(33 60% 55%) 0%, hsl(25 65% 45%) 100%);
+    background-image: linear-gradient(135deg, hsl(28 35% 70%) 0%, hsl(25 30% 50%) 100%);
   }
 
   /* Pattern backgrounds */
@@ -237,11 +237,11 @@
 
   /* Glow effects */
   .glow-gold {
-    box-shadow: 0 0 40px hsl(33 60% 50% / 0.2);
+    box-shadow: 0 0 40px hsl(28 35% 64% / 0.2);
   }
 
   .glow-sm-gold {
-    box-shadow: 0 0 20px hsl(33 60% 50% / 0.15);
+    box-shadow: 0 0 20px hsl(28 35% 64% / 0.15);
   }
 
   /* Legacy aliases */
@@ -313,7 +313,7 @@
   }
 
   @keyframes pulseGlow {
-    0%, 100% { box-shadow: 0 0 20px hsl(33 60% 50% / 0.2); }
-    50% { box-shadow: 0 0 40px hsl(33 60% 50% / 0.4); }
+    0%, 100% { box-shadow: 0 0 20px hsl(28 35% 64% / 0.2); }
+    50% { box-shadow: 0 0 40px hsl(28 35% 64% / 0.4); }
   }
 }
