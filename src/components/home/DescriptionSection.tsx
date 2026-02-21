@@ -36,7 +36,7 @@ export function DescriptionSection() {
         </motion.div>
 
         {/* 3-column grid */}
-        <div className="grid lg:grid-cols-[2fr_1fr_2fr] gap-10 lg:gap-8 items-start">
+        <div className="grid lg:grid-cols-[2fr_1fr_2fr] gap-10 lg:gap-8 items-center">
           {/* Left — philosophy text */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
