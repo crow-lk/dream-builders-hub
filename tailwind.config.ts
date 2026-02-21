@@ -57,7 +57,7 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Construction cap colors
+        // Construction accent colors
         safety: {
           yellow: "hsl(var(--safety-yellow))",
           orange: "hsl(var(--safety-orange))",
@@ -109,8 +109,8 @@ export default {
         "ken-burns": "ken-burns 30s ease-in-out infinite",
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        display: ["Poppins", "system-ui", "sans-serif"],
+        sans: ["Raleway", "system-ui", "sans-serif"],
+        display: ["Playfair Display", "Georgia", "serif"],
       },
     },
   },

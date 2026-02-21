@@ -17,17 +17,18 @@ export function Navbar() {
   const location = useLocation();
 
   return (
-    <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-primary rounded-md flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">H</span>
-            </div>
+          <Link to="/" className="flex items-center gap-3">
             <div className="flex flex-col">
-              <span className="font-display font-bold text-lg leading-tight">HomeBuilders.lk</span>
-              <span className="text-[10px] text-muted-foreground leading-tight">Powered by Sandali Construction</span>
+              <span className="font-display font-bold text-xl tracking-wide text-foreground">
+                HomeBuilders<span className="text-primary">.lk</span>
+              </span>
+              <span className="text-[9px] uppercase tracking-[0.2em] text-muted-foreground leading-tight">
+                Sandali Construction
+              </span>
             </div>
           </Link>
 
@@ -37,10 +38,10 @@ export function Navbar() {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium transition-colors hover:text-foreground ${
+                className={`text-xs font-medium uppercase tracking-[0.15em] transition-colors underline-animated ${
                   location.pathname === link.path
-                    ? "text-foreground"
-                    : "text-muted-foreground"
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {link.name}
@@ -51,9 +52,9 @@ export function Navbar() {
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-3">
             <a href="tel:+94776265636">
-              <Button variant="outline" size="sm" className="gap-2">
+              <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-primary">
                 <Phone className="w-4 h-4" />
-                Call Now
+                <span className="text-xs uppercase tracking-wider">Call</span>
               </Button>
             </a>
             <a
@@ -61,9 +62,9 @@ export function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button size="sm" className="gap-2 bg-safety-green hover:bg-safety-green/90">
+              <Button size="sm" className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground">
                 <MessageCircle className="w-4 h-4" />
-                WhatsApp
+                <span className="text-xs uppercase tracking-wider">WhatsApp</span>
               </Button>
             </a>
           </div>
@@ -71,7 +72,7 @@ export function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2"
+            className="md:hidden p-2 text-foreground"
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -80,25 +81,25 @@ export function Navbar() {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-border animate-fade-in">
+          <div className="md:hidden py-6 border-t border-border/50 animate-fade-in">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsOpen(false)}
-                  className={`text-sm font-medium transition-colors ${
+                  className={`text-xs font-medium uppercase tracking-[0.15em] transition-colors ${
                     location.pathname === link.path
-                      ? "text-foreground"
+                      ? "text-primary"
                       : "text-muted-foreground"
                   }`}
                 >
                   {link.name}
                 </Link>
               ))}
-              <div className="flex gap-2 pt-4 border-t border-border">
+              <div className="flex gap-2 pt-4 border-t border-border/50">
                 <a href="tel:+94776265636" className="flex-1">
-                  <Button variant="outline" size="sm" className="w-full gap-2">
+                  <Button variant="outline" size="sm" className="w-full gap-2 border-border text-foreground">
                     <Phone className="w-4 h-4" />
                     Call
                   </Button>
@@ -109,7 +110,7 @@ export function Navbar() {
                   rel="noopener noreferrer"
                   className="flex-1"
                 >
-                  <Button size="sm" className="w-full gap-2 bg-safety-green hover:bg-safety-green/90">
+                  <Button size="sm" className="w-full gap-2 bg-primary hover:bg-primary/90 text-primary-foreground">
                     <MessageCircle className="w-4 h-4" />
                     WhatsApp
                   </Button>

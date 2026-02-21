@@ -15,7 +15,6 @@ const packages = [
     rate: 10000,
     badge: "Essential",
     icon: Star,
-    badgeColor: "bg-safety-blue",
     description: "Perfect for budget-conscious first-time home builders",
     image: packageBudget,
     specs: { bedrooms: "3", bathrooms: "2", parking: "1 Car" },
@@ -33,7 +32,6 @@ const packages = [
     rate: 12000,
     badge: "Popular",
     icon: Sparkles,
-    badgeColor: "bg-safety-green",
     description: "Best value for upgraded budget builds",
     image: packagePremium,
     specs: { bedrooms: "3–4", bathrooms: "2–3", parking: "1–2 Cars" },
@@ -52,7 +50,6 @@ const packages = [
     rate: 18000,
     badge: "Premium",
     icon: Crown,
-    badgeColor: "bg-safety-orange",
     description: "Premium living with superior materials",
     image: packageVip,
     specs: { bedrooms: "4–5", bathrooms: "3–4", parking: "2 Cars" },
@@ -71,7 +68,6 @@ const packages = [
     rate: 35000,
     badge: "Luxury",
     icon: Gem,
-    badgeColor: "bg-safety-yellow",
     description: "Ultimate luxury for discerning clients",
     image: packageVvip,
     specs: { bedrooms: "5+", bathrooms: "4+", parking: "3+ Cars" },
@@ -93,19 +89,8 @@ export function PackagesSection() {
   };
 
   return (
-    <section id="packages" className="py-20 md:py-32 bg-background relative overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-safety-blue via-safety-yellow to-safety-orange" />
-      <motion.div
-        animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
-        transition={{ duration: 10, repeat: Infinity }}
-        className="absolute -bottom-32 -right-32 w-96 h-96 bg-safety-yellow rounded-full blur-3xl"
-      />
-      <motion.div
-        animate={{ scale: [1.2, 1, 1.2], opacity: [0.05, 0.1, 0.05] }}
-        transition={{ duration: 12, repeat: Infinity }}
-        className="absolute top-1/4 -left-32 w-64 h-64 bg-safety-orange rounded-full blur-3xl"
-      />
+    <section id="packages" className="py-20 md:py-32 bg-secondary relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
@@ -115,15 +100,15 @@ export function PackagesSection() {
           viewport={{ once: true }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <span className="inline-flex items-center gap-2 text-safety-yellow font-semibold text-sm uppercase tracking-wider">
-            <span className="w-8 h-px bg-safety-yellow" />
+          <span className="inline-flex items-center gap-2 text-primary font-medium text-xs uppercase tracking-[0.2em]">
+            <span className="w-8 h-px bg-primary" />
             Our Packages
-            <span className="w-8 h-px bg-safety-yellow" />
+            <span className="w-8 h-px bg-primary" />
           </span>
-          <h2 className="font-display text-3xl md:text-5xl font-bold mt-4">
-            Dream House <span className="text-gradient-yellow">Packages</span>
+          <h2 className="font-display text-3xl md:text-5xl font-bold mt-4 text-foreground">
+            Dream House <span className="text-gradient-gold italic">Packages</span>
           </h2>
-          <p className="text-muted-foreground mt-4">
+          <p className="text-muted-foreground mt-4 font-light">
             Choose the perfect package for your dream home. All packages include complete construction 
             with quality materials and expert workmanship.
           </p>
@@ -140,8 +125,8 @@ export function PackagesSection() {
               transition={{ delay: index * 0.1 }}
               className="h-full"
             >
-              <Card className={`h-full overflow-hidden bg-card border-2 transition-all duration-500 hover:shadow-2xl relative group ${
-                pkg.popular ? 'border-safety-green ring-2 ring-safety-green/20' : 'hover:border-safety-yellow/50'
+              <Card className={`h-full overflow-hidden bg-card border transition-all duration-500 hover:shadow-2xl relative group rounded-sm ${
+                pkg.popular ? 'border-primary ring-1 ring-primary/20' : 'border-border hover:border-primary/30'
               }`}>
                 {pkg.popular && (
                   <motion.div
@@ -149,7 +134,7 @@ export function PackagesSection() {
                     animate={{ scale: 1 }}
                     className="absolute top-4 right-4 z-20"
                   >
-                    <span className="bg-safety-green text-foreground px-4 py-1.5 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg">
+                    <span className="bg-primary text-primary-foreground px-4 py-1.5 rounded-sm text-xs font-semibold flex items-center gap-1 shadow-lg uppercase tracking-wider">
                       <Sparkles className="w-3 h-3" />
                       Most Popular
                     </span>
@@ -165,13 +150,12 @@ export function PackagesSection() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
                   
-                  {/* Badge overlay */}
                   <div className="absolute bottom-4 left-4 right-4">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className={`${pkg.badgeColor} text-foreground p-2 rounded-xl`}>
+                      <span className="bg-primary/20 text-primary p-2 rounded-sm border border-primary/30">
                         <pkg.icon className="w-5 h-5" />
                       </span>
-                      <span className={`${pkg.badgeColor} text-foreground px-3 py-1 rounded-full text-xs font-semibold`}>
+                      <span className="bg-primary/20 text-primary px-3 py-1 rounded-sm text-xs font-semibold uppercase tracking-wider border border-primary/30">
                         {pkg.badge}
                       </span>
                     </div>
@@ -180,29 +164,29 @@ export function PackagesSection() {
                 </div>
 
                 <CardContent className="pt-6 pb-4">
-                  <p className="text-sm text-muted-foreground mb-4">{pkg.description}</p>
+                  <p className="text-sm text-muted-foreground mb-4 font-light">{pkg.description}</p>
 
                   {/* Specs row */}
-                  <div className="grid grid-cols-3 gap-2 mb-5 p-3 rounded-xl bg-secondary">
+                  <div className="grid grid-cols-3 gap-2 mb-5 p-3 rounded-sm bg-secondary border border-border/50">
                     <div className="flex flex-col items-center gap-1">
                       <BedDouble className="w-4 h-4 text-muted-foreground" />
-                      <span className="font-bold text-sm">{pkg.specs.bedrooms}</span>
-                      <span className="text-[10px] text-muted-foreground">Beds</span>
+                      <span className="font-bold text-sm text-foreground">{pkg.specs.bedrooms}</span>
+                      <span className="text-[10px] text-muted-foreground uppercase tracking-wider">Beds</span>
                     </div>
-                    <div className="flex flex-col items-center gap-1 border-x border-border">
+                    <div className="flex flex-col items-center gap-1 border-x border-border/50">
                       <Bath className="w-4 h-4 text-muted-foreground" />
-                      <span className="font-bold text-sm">{pkg.specs.bathrooms}</span>
-                      <span className="text-[10px] text-muted-foreground">Baths</span>
+                      <span className="font-bold text-sm text-foreground">{pkg.specs.bathrooms}</span>
+                      <span className="text-[10px] text-muted-foreground uppercase tracking-wider">Baths</span>
                     </div>
                     <div className="flex flex-col items-center gap-1">
                       <Car className="w-4 h-4 text-muted-foreground" />
-                      <span className="font-bold text-sm text-center leading-tight">{pkg.specs.parking}</span>
-                      <span className="text-[10px] text-muted-foreground">Parking</span>
+                      <span className="font-bold text-sm text-center leading-tight text-foreground">{pkg.specs.parking}</span>
+                      <span className="text-[10px] text-muted-foreground uppercase tracking-wider">Parking</span>
                     </div>
                   </div>
                   
-                  <div className="mb-4 p-3 rounded-xl bg-secondary flex items-baseline gap-1">
-                    <span className="font-display text-2xl font-bold text-safety-yellow">
+                  <div className="mb-4 p-3 rounded-sm bg-secondary border border-border/50 flex items-baseline gap-1">
+                    <span className="font-display text-2xl font-bold text-primary">
                       LKR {formatCurrency(pkg.rate)}
                     </span>
                     <span className="text-muted-foreground text-sm">/ sq ft</span>
@@ -211,8 +195,8 @@ export function PackagesSection() {
                   <ul className="space-y-1.5">
                     {pkg.features.slice(0, 4).map((feature) => (
                       <li key={feature} className="flex items-start gap-2 text-sm">
-                        <Check className="w-4 h-4 text-safety-green flex-shrink-0 mt-0.5" />
-                        <span>{feature}</span>
+                        <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                        <span className="text-foreground">{feature}</span>
                       </li>
                     ))}
                     {pkg.features.length > 4 && (
@@ -225,16 +209,16 @@ export function PackagesSection() {
 
                 <CardFooter className="pt-0 pb-6 gap-2">
                   <Link to={`/packages/${pkg.id}`} className="flex-1">
-                    <Button variant="outline" className="w-full gap-2 group/btn">
+                    <Button variant="outline" className="w-full gap-2 group/btn rounded-sm border-border text-foreground hover:border-primary hover:text-primary">
                       View Details
                       <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                     </Button>
                   </Link>
                   <Link to="/calculator" className="flex-1">
-                    <Button className={`w-full gap-2 ${
+                    <Button className={`w-full gap-2 rounded-sm ${
                       pkg.popular 
-                        ? 'bg-safety-green hover:bg-safety-green/90' 
-                        : 'bg-primary hover:bg-primary/90'
+                        ? 'bg-primary hover:bg-primary/90 text-primary-foreground' 
+                        : 'bg-primary hover:bg-primary/90 text-primary-foreground'
                     }`}>
                       <Calculator className="w-4 h-4" />
                       Calculate
@@ -253,7 +237,7 @@ export function PackagesSection() {
           className="text-center mt-10"
         >
           <Link to="/packages">
-            <Button size="lg" variant="outline" className="gap-2">
+            <Button size="lg" variant="outline" className="gap-2 rounded-sm border-border text-foreground hover:border-primary hover:text-primary uppercase tracking-wider text-xs">
               View All Packages
               <ArrowRight className="w-4 h-4" />
             </Button>
@@ -264,9 +248,9 @@ export function PackagesSection() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center text-sm text-muted-foreground mt-6 max-w-2xl mx-auto"
+          className="text-center text-sm text-muted-foreground mt-6 max-w-2xl mx-auto font-light"
         >
-          <strong>Note:</strong> Rates are estimates; final cost depends on design, site conditions, and material selections. 
+          <strong className="text-foreground">Note:</strong> Rates are estimates; final cost depends on design, site conditions, and material selections. 
           Contact us for a personalized quote.
         </motion.p>
       </div>

@@ -3,104 +3,65 @@
 @tailwind utilities;
 
 /* HomeBuilders.lk Design System
-   Base: Black & White with construction "cap color" accents
-   All colors in HSL format
+   Dark luxury theme with gold/copper accents
+   Inspired by premium architectural aesthetics
 */
 
 @layer base {
   :root {
-    /* Base Theme - Clean Black & White */
-    --background: 0 0% 100%;
-    --foreground: 0 0% 5%;
+    /* Dark luxury base */
+    --background: 0 0% 7%;
+    --foreground: 40 10% 90%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 5%;
+    --card: 0 0% 10%;
+    --card-foreground: 40 10% 90%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 5%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 40 10% 90%;
 
-    /* Primary - Black for main UI */
-    --primary: 0 0% 5%;
-    --primary-foreground: 0 0% 100%;
-
-    /* Secondary - Light gray */
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 5%;
-
-    /* Muted - Subtle grays */
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
-
-    /* Accent - Safety Yellow (primary construction accent) */
-    --accent: 48 100% 50%;
-    --accent-foreground: 0 0% 5%;
-
-    /* Construction Cap Colors */
-    --safety-yellow: 48 100% 50%;
-    --safety-orange: 25 100% 50%;
-    --safety-red: 0 85% 50%;
-    --safety-blue: 210 100% 45%;
-    --safety-green: 145 70% 40%;
-
-    /* Destructive - Safety Red */
-    --destructive: 0 85% 50%;
-    --destructive-foreground: 0 0% 100%;
-
-    /* Borders and inputs */
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 0 0% 5%;
-
-    --radius: 0.5rem;
-
-    /* Sidebar */
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 0 0% 20%;
-    --sidebar-primary: 0 0% 5%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 95%;
-    --sidebar-accent-foreground: 0 0% 5%;
-    --sidebar-border: 0 0% 90%;
-    --sidebar-ring: 0 0% 5%;
-  }
-
-  .dark {
-    --background: 0 0% 5%;
-    --foreground: 0 0% 98%;
-
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 0 0% 98%;
+    /* Primary - Gold/Copper accent */
+    --primary: 33 60% 50%;
     --primary-foreground: 0 0% 5%;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 98%;
+    /* Secondary - Dark surface */
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 40 10% 85%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
+    /* Muted */
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 55%;
 
-    --accent: 48 100% 50%;
-    --accent-foreground: 0 0% 5%;
+    /* Accent - Warm copper */
+    --accent: 30 50% 45%;
+    --accent-foreground: 40 10% 95%;
 
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 0 0% 98%;
+    /* Construction Cap Colors - toned down for dark theme */
+    --safety-yellow: 33 60% 50%;
+    --safety-orange: 25 65% 45%;
+    --safety-red: 0 65% 45%;
+    --safety-blue: 210 40% 50%;
+    --safety-green: 145 40% 42%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 0 0% 80%;
+    /* Destructive */
+    --destructive: 0 65% 45%;
+    --destructive-foreground: 40 10% 95%;
 
+    /* Borders and inputs */
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 33 60% 50%;
+
+    --radius: 0.25rem;
+
+    /* Sidebar */
     --sidebar-background: 0 0% 8%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 48 100% 50%;
+    --sidebar-foreground: 40 10% 85%;
+    --sidebar-primary: 33 60% 50%;
     --sidebar-primary-foreground: 0 0% 5%;
-    --sidebar-accent: 0 0% 15%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 0 0% 80%;
+    --sidebar-accent: 0 0% 14%;
+    --sidebar-accent-foreground: 40 10% 85%;
+    --sidebar-border: 0 0% 18%;
+    --sidebar-ring: 33 60% 50%;
   }
 }
 
@@ -120,25 +81,25 @@
 
 @layer utilities {
   /* Gradient utilities */
-  .gradient-yellow {
-    background: linear-gradient(135deg, hsl(var(--safety-yellow)) 0%, hsl(48 100% 60%) 100%);
+  .gradient-gold {
+    background: linear-gradient(135deg, hsl(33 60% 50%) 0%, hsl(25 65% 45%) 100%);
   }
 
   .gradient-dark {
-    background: linear-gradient(135deg, hsl(0 0% 5%) 0%, hsl(0 0% 15%) 100%);
+    background: linear-gradient(135deg, hsl(0 0% 5%) 0%, hsl(0 0% 12%) 100%);
   }
 
   .gradient-mesh {
     background: 
-      radial-gradient(at 40% 20%, hsl(var(--safety-yellow) / 0.1) 0px, transparent 50%),
-      radial-gradient(at 80% 0%, hsl(var(--safety-orange) / 0.1) 0px, transparent 50%),
-      radial-gradient(at 0% 50%, hsl(var(--safety-blue) / 0.05) 0px, transparent 50%),
-      radial-gradient(at 80% 50%, hsl(var(--safety-green) / 0.05) 0px, transparent 50%),
-      radial-gradient(at 0% 100%, hsl(var(--safety-yellow) / 0.1) 0px, transparent 50%);
+      radial-gradient(at 40% 20%, hsl(33 60% 50% / 0.06) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, hsl(25 65% 45% / 0.06) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, hsl(210 40% 50% / 0.03) 0px, transparent 50%),
+      radial-gradient(at 80% 50%, hsl(145 40% 42% / 0.03) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, hsl(33 60% 50% / 0.06) 0px, transparent 50%);
   }
 
   .gradient-radial {
-    background: radial-gradient(circle at center, hsl(var(--safety-yellow) / 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle at center, hsl(33 60% 50% / 0.08) 0%, transparent 70%);
   }
 
   /* Card hover effect */
@@ -152,18 +113,24 @@
   }
 
   .glass-dark {
-    @apply bg-primary/80 backdrop-blur-lg border border-primary-foreground/10;
+    @apply bg-background/80 backdrop-blur-lg border border-border/50;
   }
 
   /* Text gradient */
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(0 0% 5%) 0%, hsl(0 0% 30%) 100%);
+    background-image: linear-gradient(135deg, hsl(40 10% 90%) 0%, hsl(0 0% 60%) 100%);
   }
 
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(33 60% 55%) 0%, hsl(25 65% 45%) 100%);
+  }
+
+  /* Legacy alias */
   .text-gradient-yellow {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--safety-yellow)) 0%, hsl(var(--safety-orange)) 100%);
+    background-image: linear-gradient(135deg, hsl(33 60% 55%) 0%, hsl(25 65% 45%) 100%);
   }
 
   /* Pattern backgrounds */
@@ -200,8 +167,8 @@
     bottom: -2px;
     left: 0;
     width: 0;
-    height: 2px;
-    background: hsl(var(--safety-yellow));
+    height: 1px;
+    background: hsl(var(--primary));
     transition: width 0.3s ease;
   }
   
@@ -269,12 +236,21 @@
   }
 
   /* Glow effects */
+  .glow-gold {
+    box-shadow: 0 0 40px hsl(33 60% 50% / 0.2);
+  }
+
+  .glow-sm-gold {
+    box-shadow: 0 0 20px hsl(33 60% 50% / 0.15);
+  }
+
+  /* Legacy aliases */
   .glow-yellow {
-    box-shadow: 0 0 40px hsl(var(--safety-yellow) / 0.3);
+    box-shadow: 0 0 40px hsl(var(--safety-yellow) / 0.2);
   }
 
   .glow-sm-yellow {
-    box-shadow: 0 0 20px hsl(var(--safety-yellow) / 0.2);
+    box-shadow: 0 0 20px hsl(var(--safety-yellow) / 0.15);
   }
 
   /* Image masks */
@@ -337,7 +313,7 @@
   }
 
   @keyframes pulseGlow {
-    0%, 100% { box-shadow: 0 0 20px hsl(var(--safety-yellow) / 0.3); }
-    50% { box-shadow: 0 0 40px hsl(var(--safety-yellow) / 0.6); }
+    0%, 100% { box-shadow: 0 0 20px hsl(33 60% 50% / 0.2); }
+    50% { box-shadow: 0 0 40px hsl(33 60% 50% / 0.4); }
   }
 }
