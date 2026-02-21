@@ -24,30 +24,29 @@ export function DescriptionSection() {
       <div className="container mx-auto px-4 relative z-10">
         {/* Section title — centered */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
           className="text-center mb-16 md:mb-20"
         >
-          <h2 className="font-display text-2xl md:text-4xl font-bold tracking-[0.1em] text-foreground">
+          <h2 className="font-display text-2xl md:text-4xl font-bold uppercase tracking-[0.15em] text-foreground">
             About{" "}
             <span className="text-primary">HomeBuilders</span>
           </h2>
         </motion.div>
 
         {/* 3-column grid */}
-        <div className="grid lg:grid-cols-3 gap-10 lg:gap-12 items-start">
+        <div className="grid lg:grid-cols-3 gap-10 lg:gap-8 items-start">
           {/* Left — philosophy text */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="space-y-5"
           >
             <h3 className="font-display text-xl md:text-2xl font-semibold text-foreground italic leading-snug">
-              We turn ideas into
+              we turn ideas into
               <br />
               works of art.
             </h3>
@@ -66,36 +65,44 @@ export function DescriptionSection() {
 
           {/* Center — specializations */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.15 }}
             className="space-y-8"
           >
             <h3 className="font-display text-xl md:text-2xl font-semibold text-foreground italic leading-snug">
-              Our
+              our
               <br />
               specialization:
             </h3>
 
             <div className="space-y-6">
-              {specializations.map((spec) => (
-                <div key={spec.name} className="flex flex-col gap-2">
+              {specializations.map((spec, i) => (
+                <motion.div
+                  key={spec.name}
+                  initial={{ opacity: 0, x: -15 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 + i * 0.1 }}
+                  className="flex flex-col gap-2"
+                >
                   <spec.icon className="w-7 h-7 text-primary" strokeWidth={1.5} />
                   <span className="text-xs uppercase tracking-[0.25em] text-foreground font-medium">
                     {spec.name}
                   </span>
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
 
           {/* Right — image */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="relative"
           >
             <div className="overflow-hidden rounded-sm">
               <img
