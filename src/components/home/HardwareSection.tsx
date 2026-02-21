@@ -65,19 +65,19 @@ export function HardwareSection() {
 
   if (loading) {
     return (
-      <section className="py-20 md:py-32 bg-primary text-primary-foreground relative overflow-hidden">
-        <div className="absolute inset-0 pattern-dots opacity-10" />
+      <section className="py-20 md:py-32 bg-background relative overflow-hidden">
+        <div className="absolute inset-0 pattern-dots opacity-5" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12">
-            <div className="h-8 w-48 bg-primary-foreground/10 rounded-full mx-auto animate-pulse" />
-            <div className="h-12 w-96 bg-primary-foreground/10 rounded-lg mx-auto mt-4 animate-pulse" />
+            <div className="h-8 w-48 bg-muted rounded-sm mx-auto animate-pulse" />
+            <div className="h-12 w-96 bg-muted rounded-sm mx-auto mt-4 animate-pulse" />
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {[...Array(8)].map((_, i) => (
-              <Card key={i} className="animate-pulse bg-primary-foreground/10 border-none">
+              <Card key={i} className="animate-pulse bg-card border-border rounded-sm">
                 <CardContent className="p-6">
-                  <div className="h-6 bg-primary-foreground/10 rounded w-3/4 mb-4" />
-                  <div className="h-4 bg-primary-foreground/10 rounded w-1/2" />
+                  <div className="h-6 bg-muted rounded w-3/4 mb-4" />
+                  <div className="h-4 bg-muted rounded w-1/2" />
                 </CardContent>
               </Card>
             ))}
@@ -88,19 +88,8 @@ export function HardwareSection() {
   }
 
   return (
-    <section className="py-20 md:py-32 bg-primary text-primary-foreground relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 pattern-dots opacity-10" />
-      <motion.div
-        animate={{ x: [0, 100, 0], opacity: [0.1, 0.2, 0.1] }}
-        transition={{ duration: 15, repeat: Infinity }}
-        className="absolute top-20 left-0 w-72 h-72 bg-safety-orange rounded-full blur-3xl"
-      />
-      <motion.div
-        animate={{ x: [0, -100, 0], opacity: [0.1, 0.2, 0.1] }}
-        transition={{ duration: 20, repeat: Infinity }}
-        className="absolute bottom-20 right-0 w-96 h-96 bg-safety-yellow rounded-full blur-3xl"
-      />
+    <section className="py-20 md:py-32 bg-background relative overflow-hidden">
+      <div className="absolute inset-0 pattern-dots opacity-5" />
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
@@ -110,14 +99,14 @@ export function HardwareSection() {
           viewport={{ once: true }}
           className="text-center max-w-3xl mx-auto mb-12"
         >
-          <span className="inline-flex items-center gap-2 text-safety-orange font-semibold text-sm uppercase tracking-wider">
+          <span className="inline-flex items-center gap-2 text-primary font-medium text-xs uppercase tracking-[0.2em]">
             <Package className="w-4 h-4" />
             Quality Materials
           </span>
-          <h2 className="font-display text-3xl md:text-5xl font-bold mt-4">
-            Recommended <span className="text-safety-orange">Hardware</span>
+          <h2 className="font-display text-3xl md:text-5xl font-bold mt-4 text-foreground">
+            Recommended <span className="text-primary italic">Hardware</span>
           </h2>
-          <p className="text-primary-foreground/70 mt-4">
+          <p className="text-muted-foreground mt-4 font-light">
             Top-rated construction materials trusted by our team for superior quality and durability.
           </p>
         </motion.div>
@@ -131,7 +120,7 @@ export function HardwareSection() {
         >
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm" className="gap-2 bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20">
+              <Button variant="outline" size="sm" className="gap-2 border-border text-foreground hover:border-primary hover:text-primary rounded-sm">
                 <Filter className="w-4 h-4" />
                 {filterCategory || "All Categories"}
               </Button>
@@ -153,7 +142,7 @@ export function HardwareSection() {
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm" className="gap-2 bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20">
+              <Button variant="outline" size="sm" className="gap-2 border-border text-foreground hover:border-primary hover:text-primary rounded-sm">
                 <ArrowUpDown className="w-4 h-4" />
                 Sort by {sortBy === "rating" ? "Rating" : "Name"}
               </Button>
@@ -179,26 +168,25 @@ export function HardwareSection() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
             >
-              <Card className="h-full bg-primary-foreground/5 border-primary-foreground/10 hover:bg-primary-foreground/10 hover:border-safety-orange/50 transition-all duration-300 hover:-translate-y-2 group">
+              <Card className="h-full bg-card border-border hover:border-primary/30 transition-all duration-300 hover:-translate-y-2 group rounded-sm">
                 <CardContent className="p-6">
-                  {/* Category badge */}
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-2xl">
                       {categoryIcons[item.category] || categoryIcons.default}
                     </span>
-                    <span className="text-xs font-medium text-primary-foreground/60 bg-primary-foreground/10 px-3 py-1 rounded-full">
+                    <span className="text-xs font-medium text-muted-foreground bg-secondary px-3 py-1 rounded-sm border border-border/50 uppercase tracking-wider">
                       {item.category}
                     </span>
                   </div>
 
-                  <h3 className="font-semibold text-primary-foreground mb-3 group-hover:text-safety-orange transition-colors">
+                  <h3 className="font-display font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
                     {item.name}
                   </h3>
                   
                   <StarRating rating={Number(item.rating)} size="sm" />
                   
                   {item.notes && (
-                    <p className="text-xs text-primary-foreground/60 mt-3 line-clamp-2">
+                    <p className="text-xs text-muted-foreground mt-3 line-clamp-2 font-light">
                       {item.notes}
                     </p>
                   )}

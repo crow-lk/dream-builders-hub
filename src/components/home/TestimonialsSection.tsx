@@ -83,29 +83,11 @@ export function TestimonialsSection() {
 
   return (
     <section className="py-20 md:py-32 bg-secondary relative overflow-hidden">
-      {/* Background image - more visible */}
+      {/* Background image */}
       <div className="absolute inset-0">
-        <img src={interiorLuxury} alt="" className="w-full h-full object-cover opacity-15" />
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/80 via-secondary/90 to-secondary" />
+        <img src={interiorLuxury} alt="" className="w-full h-full object-cover opacity-5" />
+        <div className="absolute inset-0 bg-gradient-to-b from-secondary/80 via-secondary/95 to-secondary" />
       </div>
-      
-      {/* Decorative quote marks */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.5 }}
-        whileInView={{ opacity: 0.1, scale: 1 }}
-        viewport={{ once: true }}
-        className="absolute top-20 left-10"
-      >
-        <Quote className="w-40 h-40 text-safety-green" />
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.5 }}
-        whileInView={{ opacity: 0.1, scale: 1 }}
-        viewport={{ once: true }}
-        className="absolute bottom-20 right-10 rotate-180"
-      >
-        <Quote className="w-40 h-40 text-safety-green" />
-      </motion.div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
@@ -115,26 +97,25 @@ export function TestimonialsSection() {
           viewport={{ once: true }}
           className="text-center max-w-3xl mx-auto mb-12"
         >
-          <span className="inline-flex items-center gap-2 text-safety-green font-semibold text-sm uppercase tracking-wider">
+          <span className="inline-flex items-center gap-2 text-primary font-medium text-xs uppercase tracking-[0.2em]">
             <MessageCircle className="w-4 h-4" />
             Testimonials
           </span>
-          <h2 className="font-display text-3xl md:text-5xl font-bold mt-4">
-            What Our <span className="text-safety-green">Clients Say</span>
+          <h2 className="font-display text-3xl md:text-5xl font-bold mt-4 text-foreground">
+            What Our <span className="text-primary italic">Clients Say</span>
           </h2>
-          <p className="text-muted-foreground mt-4">
+          <p className="text-muted-foreground mt-4 font-light">
             Hear from homeowners who trusted us with their dream projects.
           </p>
         </motion.div>
 
         {/* Testimonials Carousel */}
         <div className="relative max-w-6xl mx-auto">
-          {/* Navigation buttons */}
           <Button
             variant="outline"
             size="icon"
             onClick={scrollPrev}
-            className="absolute -left-4 md:-left-14 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-background/80 backdrop-blur-sm border-2 hover:bg-safety-green hover:border-safety-green hover:text-foreground shadow-lg"
+            className="absolute -left-4 md:-left-14 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-background/80 backdrop-blur-sm border-border hover:bg-primary hover:border-primary hover:text-primary-foreground shadow-lg"
           >
             <ChevronLeft className="w-6 h-6" />
           </Button>
@@ -143,7 +124,7 @@ export function TestimonialsSection() {
             variant="outline"
             size="icon"
             onClick={scrollNext}
-            className="absolute -right-4 md:-right-14 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-background/80 backdrop-blur-sm border-2 hover:bg-safety-green hover:border-safety-green hover:text-foreground shadow-lg"
+            className="absolute -right-4 md:-right-14 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-background/80 backdrop-blur-sm border-border hover:bg-primary hover:border-primary hover:text-primary-foreground shadow-lg"
           >
             <ChevronRight className="w-6 h-6" />
           </Button>
@@ -162,33 +143,29 @@ export function TestimonialsSection() {
                     transition={{ delay: index * 0.05 }}
                     className="p-2 h-full"
                   >
-                    <Card className="h-full bg-background border-none shadow-xl hover:shadow-2xl transition-all duration-300 group">
+                    <Card className="h-full bg-card border-border shadow-xl hover:shadow-2xl transition-all duration-300 group rounded-sm">
                       <CardContent className="p-6 flex flex-col h-full">
-                        {/* Quote icon */}
                         <motion.div
                           whileHover={{ scale: 1.1, rotate: 10 }}
-                          className="w-12 h-12 bg-safety-green/20 rounded-xl flex items-center justify-center mb-4"
+                          className="w-12 h-12 bg-primary/10 border border-primary/20 rounded-sm flex items-center justify-center mb-4"
                         >
-                          <Quote className="w-6 h-6 text-safety-green" />
+                          <Quote className="w-6 h-6 text-primary" />
                         </motion.div>
 
-                        {/* Star rating */}
                         <div className="flex gap-1 mb-4">
                           {[...Array(testimonial.rating)].map((_, i) => (
-                            <Star key={i} className="w-5 h-5 fill-safety-yellow text-safety-yellow" />
+                            <Star key={i} className="w-5 h-5 fill-primary text-primary" />
                           ))}
                         </div>
 
-                        {/* Testimonial text */}
-                        <p className="text-muted-foreground leading-relaxed mb-6 flex-grow group-hover:text-foreground transition-colors text-sm md:text-base">
+                        <p className="text-muted-foreground leading-relaxed mb-6 flex-grow group-hover:text-foreground transition-colors text-sm md:text-base font-light italic">
                           "{testimonial.text}"
                         </p>
 
-                        {/* Author */}
-                        <div className="flex items-center gap-4 pt-4 border-t border-border">
+                        <div className="flex items-center gap-4 pt-4 border-t border-border/50">
                           <motion.div
                             whileHover={{ scale: 1.1 }}
-                            className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-safety-green ring-offset-2 ring-offset-background"
+                            className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-primary ring-offset-2 ring-offset-card"
                           >
                             <img
                               src={testimonial.image}
@@ -197,7 +174,7 @@ export function TestimonialsSection() {
                             />
                           </motion.div>
                           <div>
-                            <p className="font-semibold text-foreground">{testimonial.name}</p>
+                            <p className="font-display font-semibold text-foreground">{testimonial.name}</p>
                             <p className="text-sm text-muted-foreground">{testimonial.location}</p>
                           </div>
                         </div>
@@ -217,7 +194,7 @@ export function TestimonialsSection() {
                 onClick={() => emblaApi?.scrollTo(index)}
                 className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                   index === selectedIndex 
-                    ? "bg-safety-green w-8" 
+                    ? "bg-primary w-8" 
                     : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
                 }`}
               />
@@ -240,9 +217,9 @@ export function TestimonialsSection() {
             <motion.div
               key={stat.label}
               whileHover={{ scale: 1.05 }}
-              className="text-center px-8 py-6 bg-background rounded-2xl shadow-xl border-2 border-transparent hover:border-safety-green/30 transition-all"
+              className="text-center px-8 py-6 bg-card rounded-sm shadow-xl border border-border hover:border-primary/30 transition-all"
             >
-              <p className="font-display text-3xl md:text-4xl font-bold text-safety-green">{stat.value}</p>
+              <p className="font-display text-3xl md:text-4xl font-bold text-primary">{stat.value}</p>
               <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>
             </motion.div>
           ))}
