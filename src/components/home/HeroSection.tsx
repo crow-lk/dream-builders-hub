@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRef, useEffect, useState } from "react";
 import heroImage from "@/assets/hero-construction.jpg";
@@ -209,10 +209,23 @@ export function HeroSection() {
         </button>
       </div>
 
-      {/* Decorative social dots bottom-left */}
-      <div className="absolute bottom-8 left-4 z-10 hidden lg:flex flex-col gap-2">
-        {[0, 1, 2].map((i) => (
-          <span key={i} className="w-1 h-1 rounded-full bg-white/15" />
+      {/* Social media icons — vertical on left side */}
+      <div className="absolute bottom-10 left-5 z-10 hidden lg:flex flex-col gap-4">
+        {[
+          { icon: Facebook, href: "https://facebook.com" },
+          { icon: Instagram, href: "https://instagram.com" },
+          { icon: Twitter, href: "https://twitter.com" },
+          { icon: Youtube, href: "https://youtube.com" },
+        ].map(({ icon: Icon, href }, i) => (
+          <a
+            key={i}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/30 hover:text-primary transition-colors"
+          >
+            <Icon className="w-4 h-4" />
+          </a>
         ))}
       </div>
     </section>
