@@ -77,8 +77,13 @@ export function ProjectsGallerySection() {
   }, [selectedProject]);
 
   return (
-    <section className="py-20 md:py-32 bg-background relative overflow-hidden">
-      <div className="absolute inset-0 pattern-grid opacity-5" />
+    <section className="py-24 md:py-36 bg-secondary relative overflow-hidden">
+      {/* Large background text */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+        <span className="font-display text-[18vw] font-bold text-foreground/[0.02] leading-none tracking-wide">
+          projects
+        </span>
+      </div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
@@ -90,110 +95,127 @@ export function ProjectsGallerySection() {
           >
             <span className="text-primary font-medium text-xs uppercase tracking-[0.2em]">Our Portfolio</span>
             <h2 className="font-display text-3xl md:text-5xl font-bold mt-2 text-foreground">
-              Featured <span className="text-primary italic">Projects</span>
+              Our <span className="text-primary italic">Projects</span>
             </h2>
-            <p className="text-muted-foreground mt-4 max-w-xl font-light">
-              Click on any project to explore the full gallery of images.
-            </p>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            className="flex items-center gap-4"
           >
+            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground hidden md:inline">← prev</span>
+            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground hidden md:inline">next →</span>
             <Link to="/categories">
               <Button variant="outline" className="border-border text-foreground hover:border-primary hover:text-primary group rounded-sm uppercase tracking-wider text-xs">
-                View All Projects
+                View All
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
           </motion.div>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              onClick={() => openGallery(project)}
-              className="group relative overflow-hidden rounded-sm cursor-pointer aspect-[4/3]"
-            >
-              <img
-                src={project.images[0]}
-                alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 brightness-75 group-hover:brightness-90"
-              />
-              
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-              
-              {/* Thumbnail strip */}
-              <div className="absolute top-4 right-4 flex gap-2">
-                {project.images.slice(1, 3).map((img, i) => (
-                  <div key={i} className="w-12 h-12 rounded-sm overflow-hidden border border-foreground/20 opacity-0 group-hover:opacity-100 transition-all duration-300" style={{ transitionDelay: `${i * 100}ms` }}>
-                    <img src={img} alt="" className="w-full h-full object-cover" />
-                  </div>
-                ))}
-              </div>
-              
-              {/* Content */}
-              <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                <motion.span className="bg-primary text-primary-foreground px-3 py-1 rounded-sm text-xs font-semibold w-fit mb-3 uppercase tracking-wider">
-                  {project.category}
-                </motion.span>
-                <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground group-hover:translate-x-2 transition-transform">
-                  {project.title}
-                </h3>
-                <div className="flex items-center gap-2 text-muted-foreground text-sm mt-2">
-                  <MapPin className="w-4 h-4" />
-                  {project.location}
-                </div>
-                <p className="text-muted-foreground text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity max-w-md font-light">
-                  {project.description}
-                </p>
-              </div>
+        {/* Asymmetric Projects Grid - matching reference layout */}
+        <div className="grid grid-cols-12 gap-4 md:gap-6 auto-rows-[200px] md:auto-rows-[250px]">
+          {/* Project 1 - Large left */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            onClick={() => openGallery(projects[0])}
+            className="col-span-12 md:col-span-4 row-span-2 group relative overflow-hidden rounded-sm cursor-pointer"
+          >
+            <img
+              src={projects[0].images[0]}
+              alt={projects[0].title}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 brightness-75 group-hover:brightness-90"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-0 p-6">
+              <p className="text-xs uppercase tracking-[0.2em] text-primary mb-1">{projects[0].category}</p>
+              <h3 className="font-display text-xl md:text-2xl font-bold text-foreground">{projects[0].title}</h3>
+              <p className="text-xs text-muted-foreground mt-1">{projects[0].location}</p>
+            </div>
+            <div className="absolute top-4 right-4 w-10 h-10 bg-primary/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity border border-primary/30">
+              <Eye className="w-5 h-5 text-primary" />
+            </div>
+          </motion.div>
 
-              {/* View button */}
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                className="absolute bottom-6 right-6 w-14 h-14 bg-primary rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg"
-              >
-                <Eye className="w-6 h-6 text-primary-foreground" />
-              </motion.div>
-            </motion.div>
-          ))}
+          {/* Project 2 - Center top */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            onClick={() => openGallery(projects[1])}
+            className="col-span-6 md:col-span-4 row-span-2 group relative overflow-hidden rounded-sm cursor-pointer"
+          >
+            <img
+              src={projects[1].images[0]}
+              alt={projects[1].title}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 brightness-75 group-hover:brightness-90"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-0 p-6">
+              <p className="text-xs uppercase tracking-[0.2em] text-primary mb-1">{projects[1].category}</p>
+              <h3 className="font-display text-xl md:text-2xl font-bold text-foreground">{projects[1].title}</h3>
+              <p className="text-xs text-muted-foreground mt-1">{projects[1].location}</p>
+            </div>
+            <div className="absolute top-4 right-4 w-10 h-10 bg-primary/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity border border-primary/30">
+              <Eye className="w-5 h-5 text-primary" />
+            </div>
+          </motion.div>
+
+          {/* Project 3 - Right top */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            onClick={() => openGallery(projects[2])}
+            className="col-span-6 md:col-span-4 row-span-1 group relative overflow-hidden rounded-sm cursor-pointer"
+          >
+            <img
+              src={projects[2].images[0]}
+              alt={projects[2].title}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 brightness-75 group-hover:brightness-90"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-0 p-4">
+              <p className="text-xs uppercase tracking-[0.2em] text-primary mb-1">{projects[2].category}</p>
+              <h3 className="font-display text-lg font-bold text-foreground">{projects[2].title}</h3>
+            </div>
+          </motion.div>
+
+          {/* Project 4 - Right bottom */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            onClick={() => openGallery(projects[3])}
+            className="col-span-12 md:col-span-4 row-span-1 group relative overflow-hidden rounded-sm cursor-pointer"
+          >
+            <img
+              src={projects[3].images[0]}
+              alt={projects[3].title}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 brightness-75 group-hover:brightness-90"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-0 p-4">
+              <p className="text-xs uppercase tracking-[0.2em] text-primary mb-1">{projects[3].category}</p>
+              <h3 className="font-display text-lg font-bold text-foreground">{projects[3].title}</h3>
+            </div>
+          </motion.div>
         </div>
 
-        {/* Stats bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 p-8 rounded-sm bg-secondary border border-border/50"
-        >
-          {[
-            { value: "500+", label: "Projects Completed" },
-            { value: "20+", label: "Years Experience" },
-            { value: "50+", label: "Expert Team" },
-            { value: "100%", label: "Client Satisfaction" },
-          ].map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="text-center"
-            >
-              <p className="font-display text-3xl md:text-4xl font-bold text-primary">{stat.value}</p>
-              <p className="text-muted-foreground text-sm mt-1">{stat.label}</p>
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* Vertical labels like reference */}
+        <div className="hidden lg:flex justify-between mt-8">
+          <span className="text-xs uppercase tracking-[0.3em] text-muted-foreground/30 font-display">architecture</span>
+          <span className="text-xs uppercase tracking-[0.3em] text-muted-foreground/30 font-display">construction</span>
+          <span className="text-xs uppercase tracking-[0.3em] text-muted-foreground/30 font-display">interiors</span>
+        </div>
       </div>
 
       {/* Lightbox Dialog */}
