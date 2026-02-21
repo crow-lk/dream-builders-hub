@@ -209,17 +209,13 @@ export function PackagesSection() {
 
                 <CardFooter className="pt-0 pb-6 gap-2">
                   <Link to={`/packages/${pkg.id}`} className="flex-1">
-                    <Button variant="outline" className="w-full gap-2 group/btn rounded-sm border-border text-foreground hover:border-primary hover:text-primary">
+                    <Button variant="outline" className="w-full gap-2 group/btn rounded-none border-border text-foreground hover:border-primary hover:text-primary text-xs uppercase tracking-wider">
                       View Details
                       <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                     </Button>
                   </Link>
                   <Link to="/calculator" className="flex-1">
-                    <Button className={`w-full gap-2 rounded-sm ${
-                      pkg.popular 
-                        ? 'bg-primary hover:bg-primary/90 text-primary-foreground' 
-                        : 'bg-primary hover:bg-primary/90 text-primary-foreground'
-                    }`}>
+                    <Button variant="outline" className="w-full gap-2 rounded-none border-primary text-primary hover:bg-primary hover:text-primary-foreground text-xs uppercase tracking-wider">
                       <Calculator className="w-4 h-4" />
                       Calculate
                     </Button>
@@ -237,7 +233,7 @@ export function PackagesSection() {
           className="text-center mt-10"
         >
           <Link to="/packages">
-            <Button size="lg" variant="outline" className="gap-2 rounded-sm border-border text-foreground hover:border-primary hover:text-primary uppercase tracking-wider text-xs">
+            <Button size="lg" variant="outline" className="gap-2 rounded-none border-primary text-primary hover:bg-primary hover:text-primary-foreground uppercase tracking-[0.2em] text-xs px-10 py-6">
               View All Packages
               <ArrowRight className="w-4 h-4" />
             </Button>

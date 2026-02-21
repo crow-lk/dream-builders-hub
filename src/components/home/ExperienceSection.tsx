@@ -46,7 +46,7 @@ export function ExperienceSection() {
             className="text-center lg:text-left"
           >
             <div className="relative inline-block">
-              <span className="font-display text-[8rem] md:text-[12rem] lg:text-[14rem] font-bold leading-none text-gradient-gold">
+              <span className="font-display text-[8rem] md:text-[12rem] lg:text-[14rem] font-bold leading-none text-primary">
                 <AnimatedNumber target={20} />
               </span>
               <span className="font-display text-[3rem] md:text-[4rem] text-primary font-bold absolute top-4 -right-8">
