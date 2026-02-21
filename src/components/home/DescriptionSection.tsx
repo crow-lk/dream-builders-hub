@@ -108,7 +108,7 @@ export function DescriptionSection() {
               <img
                 src={interiorLuxury}
                 alt="Architectural design showcase"
-                className="w-full aspect-[4/5] object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                className="w-full aspect-[4/3] object-cover grayscale hover:grayscale-0 transition-all duration-700"
               />
             </div>
           </motion.div>
