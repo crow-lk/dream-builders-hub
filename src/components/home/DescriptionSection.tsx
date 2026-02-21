@@ -31,12 +31,12 @@ export function DescriptionSection() {
         >
           <h2 className="font-display text-2xl md:text-4xl font-bold uppercase tracking-[0.15em] text-foreground">
             About{" "}
-            <span className="text-primary">HomeBuilders</span>
+            <span className="text-primary">Homebuilders</span>
           </h2>
         </motion.div>
 
         {/* 3-column grid */}
-        <div className="grid lg:grid-cols-3 gap-10 lg:gap-8 items-start">
+        <div className="grid lg:grid-cols-[2fr_1fr_2fr] gap-10 lg:gap-8 items-start">
           {/* Left — philosophy text */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -46,7 +46,7 @@ export function DescriptionSection() {
             className="space-y-5"
           >
             <h3 className="font-display text-xl md:text-2xl font-semibold text-foreground italic leading-snug">
-              we turn ideas into
+              We turn ideas into
               <br />
               works of art.
             </h3>
@@ -72,7 +72,7 @@ export function DescriptionSection() {
             className="space-y-8"
           >
             <h3 className="font-display text-xl md:text-2xl font-semibold text-foreground italic leading-snug">
-              our
+              Our
               <br />
               specialization:
             </h3>
